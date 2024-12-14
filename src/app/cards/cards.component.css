@@ -1,0 +1,23 @@
+.mt-custom {
+  margin-top: 6rem;
+}
+
+.card-body .card-img-top .card-title .card-text {
+
+}
+
+/* Modifica il CSS per le icone dentro i bottoni */
+.btn i {
+  font-size: 20px;
+  cursor: pointer;
+  color: white; /* Imposta il colore dell'icona a bianco */
+}
+
+.btn {
+  border: none;
+  background-color: #0085ff; /* Colore blu per il bottone */
+}
+
+.btn:hover {
+  background-color: #0065c3;
+}

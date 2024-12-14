@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+
+
+.form-label {
+  color: grey;
+}
+
+.form-label {
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+}
+
+h1 {
+  font-family: "Calibri", sans-serif;
+}
+
+
+
+
+#nav-item {
+  cursor: pointer;
+  font-family: "Calibri Leelawadee", sans-serif;
+  font-size: 18px
+}
+
+.active-link {
+  color: #3498db; /* Colore del testo attivo */
+  border-bottom: 2px solid #3498db; /* Sottolineatura visibile */
+  text-decoration: none; /* Rimuove la decorazione predefinita */
+}
+

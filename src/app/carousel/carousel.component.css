@@ -1,0 +1,6 @@
+.carousel-inner img {
+   /* Regola la dimensione al 50% della larghezza del contenitore */
+  height: 650px;   /* Mantiene le proporzioni dell'immagine */
+  width: 750px;
+  margin: 0 auto; /* Centra le immagini */
+}

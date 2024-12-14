@@ -1,0 +1,50 @@
+.fa-user {
+  font-size: 25px;
+  margin-top: 7px;
+  cursor: pointer;
+}
+
+.btn {
+  border: none;
+}
+
+.btn:hover {
+  background-color: #020940;
+}
+
+
+.fa-bars {
+  font-size: 25px;
+  color: white;
+}
+
+.fa-bars:hover {
+  color: #00bbff;
+  animation: ledPulse 1s infinite;
+}
+
+
+
+input:focus {
+  outline: none; /* Rimuove l'effetto predefinito del browser */
+  border: 2px solid dodgerblue; /* Cambia il colore del bordo */
+  box-shadow: 0 0 5px rgba(40, 167, 69, 0.5); /* Ombra personalizzata (verde in questo esempio) */
+}
+
+.navbar-custom {
+  background-color: #020940; /* Verde personalizzato */
+  color: white; /* Testo bianco */
+}
+
+.navbar-custom .nav-link .bg-body-tertiary {
+  color: white; /* Testo dei link bianco */
+}
+
+.navbar-nav .nav-item:hover .nav-link{
+  color: #00bbff;
+}
+
+h3 {
+  font-family: Serif, serif;
+  font-style: oblique;
+}

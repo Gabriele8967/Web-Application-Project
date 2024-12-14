@@ -1,0 +1,15 @@
+h1 {
+  font-family: "Calibri", sans-serif;
+}
+
+#nav-item {
+  cursor: pointer;
+  font-family: "Calibri Leelawadee", sans-serif;
+  font-size: 18px
+}
+
+.active-link {
+  color: #3498db; /* Colore del testo attivo */
+  border-bottom: 2px solid #3498db; /* Sottolineatura visibile */
+  text-decoration: none; /* Rimuove la decorazione predefinita */
+}

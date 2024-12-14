@@ -1,0 +1,26 @@
+.image-container {
+  position: relative;
+}
+
+.cards-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: space-between;
+  width: 80%; /* Puoi regolare la larghezza a seconda delle tue necessità */
+  z-index: 1; /* Assicura che le card siano sopra l'immagine */
+}
+
+.card {
+  margin: 0 10px; /* Spazio tra le card */
+  border-radius: 10px; /* Arrotonda i bordi delle card */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Aggiungi ombra alle card */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Aggiungi una transizione per l'effetto hover */
+}
+
+.card:hover {
+  transform: translateY(-5px); /* Leggera elevazione quando la card viene hoverata */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Ombra più accentuata durante hover */
+}
