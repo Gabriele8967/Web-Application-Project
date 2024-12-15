@@ -2,9 +2,6 @@
   margin-top: 6rem;
 }
 
-.card-body .card-img-top .card-title .card-text {
-
-}
 
 /* Modifica il CSS per le icone dentro i bottoni */
 .btn i {
@@ -20,4 +17,26 @@
 
 .btn:hover {
   background-color: #0065c3;
+}
+
+.card {
+  border-radius: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+.card-text {
+  font-family: Calibri Leelawadee, sans-serif;
+  color: gray;
+  font-size: 0.9rem;
+
+}
+
+.card-title {
+  font-size: 1.5rem;
+
 }
