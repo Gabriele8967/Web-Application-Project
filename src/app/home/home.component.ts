@@ -10,7 +10,8 @@ import {WhatIsComponent} from '../what-is/what-is.component';
     CardsComponent,
     CarouselComponent,
     IntroGuideComponent,
-    WhatIsComponent
+    WhatIsComponent,
+
   ],
   templateUrl: './home.component.html',
   standalone: true,

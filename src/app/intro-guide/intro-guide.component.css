@@ -9,8 +9,8 @@
   transform: translate(-50%, -50%);
   display: flex;
   justify-content: space-between;
-  width: 80%; /* Puoi regolare la larghezza a seconda delle tue necessità */
-  z-index: 1; /* Assicura che le card siano sopra l'immagine */
+  width: 80%;
+  z-index: 1;
 }
 
 .card {
