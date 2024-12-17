@@ -7,7 +7,7 @@
         <!-- Titolo sopra l'immagine -->
         <div class="card-title-wrapper" style="position: absolute; top: 10px; left: 0; right: 0; text-align: center; z-index: 1;">
           <h5 class="card-title" style="background-color: rgba(0, 0, 0, 0.5); color: white; padding: 5px;">
-            {{ c.title }}
+            {{ c.name }}
           </h5>
         </div>
 
@@ -16,7 +16,7 @@
              height="1152" width="2048">
 
         <div class="card-body">
-          <button routerLink="/" type="submit" class="long-button justify-content-center">Prenota</button>
+          <button routerLink="/" type="submit" class="long-button justify-content-center" [disabled]="c.isOccupied">Prenota</button>
         </div>
       </div>
     </div>
