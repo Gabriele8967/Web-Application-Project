@@ -1,0 +1,150 @@
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f9fafb; /* Colore di sfondo delicato */
+  font-family: 'Arial', sans-serif;
+  color: #333;
+}
+
+div {
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  max-width: 500px;
+  width: 100%;
+  text-align: center;
+}
+
+h1.accedi {
+  font-size: 28px;
+  margin-bottom: 5px;
+  color: #007BFF;
+}
+
+h2.dati {
+  font-size: 16px;
+  margin-bottom: 20px;
+  color: #555;
+}
+
+form.login {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+
+label {
+  font-size: 14px;
+  text-align: left;
+  color: #666;
+}
+
+
+input {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: border-color 0.3s;
+}
+
+input:focus {
+  border-color: #007BFF;
+  outline: none;
+}
+
+
+button {
+  padding: 12px;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+
+label[for="email"] {
+  font-size: 12px;
+  color: #007BFF;
+  margin-top: 10px;
+  cursor: pointer;
+  text-align: center;
+}
+
+
+.logo {
+  position: absolute;
+  top: 10px; /* Posizionamento verticale */
+  left: 20px; /* Posizionamento orizzontale */
+  width: 50px; /* Dimensione logo */
+  height: 50px; /* Dimensione logo */
+}
+
+.name {
+  position: absolute;
+  top: 10px;
+  right: 130px;
+  width: 50px;
+  height: 50px;
+  font-size: 28px;
+  margin-bottom: 10px;
+  color: #007BFF;
+}
+
+.forgot-password {
+  font-size: 14px;
+  color: #007BFF;
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 0 0 0;
+}
+.secondary-buttons {
+  display: flex;
+  flex-direction: column;  /* Dispone i bottoni verticalmente */
+  gap: 10px;  /* Distanza tra i bottoni */
+  margin-top: 20px;  /* Spazio tra il form e i bottoni */
+}
+
+.secondary-buttons button {
+  padding: 12px;
+  background-color: #007BFF;  /* Colore verde per i bottoni secondari */
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.secondary-buttons button:hover {
+  background-color: #0056b3;  /* Colore più scuro al passaggio del mouse */
+}
+
+.forgot-password a {
+  text-decoration: none;
+  color: #007BFF;
+}
+
+.forgot-password a:hover {
+  text-decoration: underline;
+}
+form.login .forgot-password {
+  display: inline-block;
+}
+
+

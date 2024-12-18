@@ -12,10 +12,13 @@ import {MatchHistoryComponent} from './match-history/match-history.component';
 import {BookFieldComponent} from './book-field/book-field.component';
 import {BookLessonComponent} from './book-lesson/book-lesson.component';
 import {FindOpponentComponent} from './find-opponent/find-opponent.component';
+import {LoginComponent} from './login/login.component';
 
 export const routes: Routes = [
 
-  {path: "", component: HomeComponent},
+
+  {path: "", component: LoginComponent},
+  {path: "login", component: LoginComponent},
   {path: "home", component: HomeComponent},
   {path: "profile", component: ProfileComponent, children: [
     {path: "set-dati", component: SetDatiComponent},
@@ -25,7 +28,7 @@ export const routes: Routes = [
       {path: "reservation-history", component: ReservationHistoryComponent},
       {path: "abilities", component: AbilitiesComponent},
       {path: "match-history", component: MatchHistoryComponent},
-      {path: "progress-graph", component: ProgressGraphComponent}
+      {path: "progress-graph", component: ProgressGraphComponent},
     ],
   },
   {path: "book-field", component: BookFieldComponent},
