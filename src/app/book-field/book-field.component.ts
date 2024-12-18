@@ -23,7 +23,7 @@ export class BookFieldComponent {
   ngOnInit() {
     this.service.getFields().subscribe((fields: Field[]) => {
       this.campi = fields;
-      alert(fields[0].image)
+
     })
   }
 }

@@ -1,0 +1,37 @@
+<div>
+  <h2>Gestione Utenti</h2>
+
+  <!-- Filtri -->
+  <div>
+    <label for="cerca">Cerca</label>
+    <input [(ngModel)]="filters.name" id="Cerca" placeholder="" />
+
+    <label for="status">Età</label>
+    <select [(ngModel)]="filters.status" id="status">
+      <option value="active">Crescente</option>
+      <option value="inactive">Decrescente</option>
+    </select>
+
+    <button (click)="applyFilters()">Filtra</button>
+  </div>
+
+  <!-- Tabella degli utenti -->
+  <table>
+    <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Email</th>
+      <th>Ruolo</th>
+      <th>Stato</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let user of users">
+      <td>{{ user.name }}</td>
+      <td>{{ user.email }}</td>
+      <td>{{ user.role }}</td>
+      <td>{{ user.status }}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,99 @@
+/* Contenitore principale */
+.cont_sm.cont.center {
+  text-align: center;
+  margin: 0 auto;
+  padding: 50px 20px;
+}
+
+.section_title {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #333;
+  display: inline-block;
+  position: relative;
+}
+
+/* Wrapper per immagini (racchetta e pallina) */
+.img-wrapper {
+  display: inline-block;
+  position: relative;
+  margin: 0 10px;
+}
+
+/* Immagini dei giocatori */
+.players {
+  position: relative;
+  text-align: center; /* Centra il contenuto all'interno */
+  height: 200px; /* Altezza per il contenitore dei tennisti */
+}
+
+.player {
+  position: absolute;
+  bottom: 0;
+  height: 200px;
+  width: auto;
+}
+
+.player-left {
+  left: 10%;
+  animation: slideInLeft 1s ease-out;
+}
+
+.player-right {
+  right: 10%;
+  animation: slideInRight 1s ease-out;
+}
+
+/* Posizionamento centrale per racchetta e pallina */
+.rack {
+  position: absolute;
+  top: 50%; /* Posiziona la racchetta al centro verticale */
+  left: 50%; /* Posiziona la racchetta al centro orizzontale */
+  transform: translate(-60%, -50%); /* Centratura perfetta */
+  height: 100px; /* Modifica questa proprietà per cambiare la dimensione della racchetta */
+  width: auto; /* La larghezza si adatta automaticamente per mantenere le proporzioni */
+}
+
+.ball {
+  position: absolute;
+  top: 50%; /* Posiziona la pallina a metà altezza */
+  left: 50%; /* Posiziona la pallina al centro orizzontalmente */
+  transform: translate(-50%, -50%); /* Centratura perfetta */
+  height: 30px; /* Puoi regolare l'altezza della pallina */
+  width: auto;
+  animation: bounce 2s infinite; /* Animazione bounce per la pallina */
+}
+
+/* Animazione Bounce per la pallina */
+@keyframes bounce {
+  0%, 100% {
+    transform: translate(-50%, -50%) translateY(0); /* Partenza e ritorno alla posizione centrale */
+  }
+  40% {
+    transform: translate(-50%, -50%) translateY(+30px); /* Pallina si sposta sopra */
+  }
+
+}
+
+/* Animazioni slide */
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}

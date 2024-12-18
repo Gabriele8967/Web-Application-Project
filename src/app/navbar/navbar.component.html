@@ -1,5 +1,3 @@
-
-
 <nav class="navbar navbar-expand-lg navbar-custom">
   <div class="container-fluid">
     <!-- Burger button per aprire la sidebar -->
@@ -7,15 +5,28 @@
       <i class="fas fa-bars"></i>
     </button>
 
-    <div class="collapse navbar-collapse" >
+    <div class="collapse navbar-collapse">
       <div class="hstack">
         <div class="ms-2"><img src="/assets/image/logo.png"></div>
         <a routerLink="/home" class="text-decoration-none" style="cursor: pointer; color: inherit;">
           <h4>EasyMatch</h4>
         </a>
-    </div>
+      </div>
+
+      <!-- Lista di navigazione per i pulsanti Profilo e Logout -->
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <button class="btn btn-primary" routerLink="/profile">
+            Profilo
+          </button>
+        </li>
+        <li class="nav-item">
+          <button class="btn btn-danger" (click)="logout()">
+            Logout
+          </button>
+        </li>
+      </ul>
     </div>
   </div>
 </nav>
 <app-sidebar></app-sidebar>
-
