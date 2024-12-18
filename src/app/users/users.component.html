@@ -1,37 +1,34 @@
-<div>
-  <h2>Gestione Utenti</h2>
+<div class="container overflow-hidden text-center mt-5">
+  <div class="row gy-5">
+    <!-- Ciclo attraverso la lista di utenti -->
+    <div class="col-12" *ngFor="let c of users">
 
-  <!-- Filtri -->
-  <div>
-    <label for="cerca">Cerca</label>
-    <input [(ngModel)]="filters.name" id="Cerca" placeholder="" />
+      <!-- Card dell'utente -->
+      <div class="card mx-auto" style="width: 100%; margin-bottom: 20px;"> <!-- Card a larghezza completa -->
 
-    <label for="status">Età</label>
-    <select [(ngModel)]="filters.status" id="status">
-      <option value="active">Crescente</option>
-      <option value="inactive">Decrescente</option>
-    </select>
+        <!-- Titolo sopra l'immagine -->
+        <div class="card-title-wrapper" style="position: absolute; top: 10px; left: 0; right: 0; text-align: center; z-index: 1;">
+          <h5 class="card-title" style="background-color: rgba(0, 0, 0, 0.5); color: white; padding: 5px;">
+            {{ c.id }} - {{ c.nome }} {{ c.cognome }}
+          </h5>
+        </div>
 
-    <button (click)="applyFilters()">Filtra</button>
+        <!-- Immagine dell'utente -->
+        <img [src]="c.immagineProfilo || 'default-image.jpg'" class="card-img-top" style="height: 200px; object-fit: cover;" alt="Immagine di {{ c.nome }} {{ c.cognome }}">
+
+        <!-- Corpo della card -->
+        <div class="card-body">
+          <p><strong>Username:</strong> {{ c.username }}</p>
+          <p><strong>Email:</strong> {{ c.email }}</p>
+          <p><strong>Numero:</strong> {{ c.numero }}</p>
+          <p><strong>Livello:</strong> {{ c.livello }}</p>
+
+          <!-- Pulsante per la prenotazione -->
+          <button routerLink="/ciupa" type="submit" class="long-button justify-content-center" [disabled]="!c.email">
+            Prenota
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
-
-  <!-- Tabella degli utenti -->
-  <table>
-    <thead>
-    <tr>
-      <th>Nome</th>
-      <th>Email</th>
-      <th>Ruolo</th>
-      <th>Stato</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let user of users">
-      <td>{{ user.name }}</td>
-      <td>{{ user.email }}</td>
-      <td>{{ user.role }}</td>
-      <td>{{ user.status }}</td>
-    </tr>
-    </tbody>
-  </table>
 </div>

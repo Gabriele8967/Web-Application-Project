@@ -1,33 +1,24 @@
-import { Component } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {FormsModule} from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common'; // Importa CommonModule
+import { UsersService } from '../services/users/users.service';
+import { Users } from '../models/users';
+import {RouterLink} from '@angular/router';
 
 @Component({
   selector: 'app-users',
-  imports: [
-    FormsModule
-  ],
   templateUrl: './users.component.html',
+  styleUrls: ['./users.component.css'],
   standalone: true,
-  styleUrl: './users.component.css'
+  imports: [CommonModule, RouterLink] // Aggiungi CommonModule qui
 })
-export class UsersComponent {
-  filters = {
-    name: '',
-    status: 'active',
-  };
-  users = [];
+export class UsersComponent implements OnInit {
+  users: Users[] = [];
 
-  constructor(private http: HttpClient) {}
+  constructor(private service: UsersService) {}
 
-  applyFilters() {
-    const queryParams = new URLSearchParams({
-      name: this.filters.name,
-      status: this.filters.status,
-    }).toString();
-
-    this.http.get(`/api/users?${queryParams}`).subscribe((data: any) => {
-      this.users = data;
+  ngOnInit() {
+    this.service.getUsers().subscribe((users: Users[]) => {
+      this.users = users;
     });
   }
 }
