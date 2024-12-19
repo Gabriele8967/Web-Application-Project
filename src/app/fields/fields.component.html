@@ -1,6 +1,5 @@
 <div class="container overflow-hidden text-center mt-5">
   <div class="row gy-5">
-
     <div class="col-lg-4 col-md-6 col-sm-12" *ngFor="let c of campi">
       <div class="card mx-auto" style="width: 90%;">
 
@@ -16,10 +15,12 @@
              height="1152" width="2048">
 
         <div class="card-body">
-          <button routerLink="/" type="submit" class="long-button justify-content-center" [disabled]="c.isOccupied">Gestisci campo</button>
+          <!-- Pulsante per gestire il campo che chiama la funzione gestisciCampo -->
+          <button class="btn btn-primary" (click)="gestisciCampo(c.id)">
+            Gestisci campo
+          </button>
         </div>
       </div>
     </div>
-
   </div>
 </div>

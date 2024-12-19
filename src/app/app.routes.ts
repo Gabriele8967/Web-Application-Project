@@ -9,11 +9,12 @@ import {ReservationsComponent} from './reservations/reservations.component';
 import {ReservationHistoryComponent} from './reservation-history/reservation-history.component';
 import {AbilitiesComponent} from './abilities/abilities.component';
 import {MatchHistoryComponent} from './match-history/match-history.component';
-import {BookFieldComponent} from './book-field/book-field.component';
 import {BookLessonComponent} from './book-lesson/book-lesson.component';
 import {FindOpponentComponent} from './find-opponent/find-opponent.component';
 import {UsersComponent} from './users/users.component';
 import {SingleUserComponent} from './single-user/single-user.component';
+import {FieldsComponent} from './fields/fields.component';
+import {SingleFieldComponent} from './single-field/single-field.component';
 
 export const routes: Routes = [
 
@@ -31,10 +32,11 @@ export const routes: Routes = [
     ],
   },
   {path: "users", component: UsersComponent},
-  {path: "book-field", component: BookFieldComponent},
+  {path: "fields", component: FieldsComponent},
   {path: "book-lesson", component: BookLessonComponent},
   {path: "find-opponent", component: FindOpponentComponent},
-  {path: 'user/:id', component: SingleUserComponent}
+  {path: 'users/:id', component: SingleUserComponent },
+  {path: 'fields/:id', component: SingleFieldComponent }
 
 
 

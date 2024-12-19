@@ -1,12 +1,21 @@
-<div *ngIf="user">
-  <div class="user-details">
-    <img [src]="user.immagineProfilo" alt="{{ user.nome }}" class="user-image">
-    <div class="user-info">
-      <h2>{{ user.nome }} {{ user.cognome }}</h2>
-      <p><strong>Email:</strong> {{ user.email }}</p>
-      <p><strong>Username:</strong> {{ user.username }}</p>
-      <p><strong>Livello:</strong> {{ user.livello }}</p>
-      <button class="btn btn-danger">Banna</button>
+<div class="container mt-5">
+  <div *ngIf="user; else loading">
+    <div class="row">
+      <div class="col-md-4">
+        <img [src]="user.immagineProfilo || 'default-image.jpg'" alt="Immagine di {{ user.nome }}" class="rounded-circle" style="width: 200px; height: 200px; object-fit: cover;">
+      </div>
+      <div class="col-md-8">
+        <h2>{{ user.nome }} {{ user.cognome }}</h2>
+        <p><strong>Username:</strong> {{ user.username }}</p>
+        <p><strong>Email:</strong> {{ user.email }}</p>
+        <p><strong>Numero:</strong> {{ user.numero }}</p>
+        <p><strong>Livello:</strong> {{ user.livello }}</p>
+        <!-- Pulsante per bannare (da implementare) -->
+        <button class="btn btn-danger">Banna</button>
+      </div>
     </div>
   </div>
+  <ng-template #loading>
+    <p>Caricamento utente...</p>
+  </ng-template>
 </div>

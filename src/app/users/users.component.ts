@@ -11,6 +11,7 @@ import {Router, RouterLink} from '@angular/router';
   standalone: true,
   imports: [CommonModule, RouterLink] // Aggiungi CommonModule qui
 })
+
 export class UsersComponent implements OnInit {
   users: Users[] = [];
 
@@ -22,7 +23,7 @@ export class UsersComponent implements OnInit {
     });
   }
   gestisciUtente(id: number): void {
-    this.router.navigate([`/utente/${id}`]);  // Naviga alla pagina dell'utente con l'ID
+    this.router.navigate([`/users/${id}`]);  // Naviga alla pagina dell'utente con l'ID
   }
 
 }

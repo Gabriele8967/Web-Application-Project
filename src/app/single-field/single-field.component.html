@@ -1,0 +1,12 @@
+<div *ngIf="campo; else loading">
+  <h2>{{ campo.name }}</h2>
+  <p><strong>ID:</strong> {{ campo.id }}</p>
+  <p><strong>Stato:</strong> {{ campo.isOccupied ? 'Occupato' : 'Libero' }}</p>
+  <div *ngIf="campo.image">
+    <img [src]="campo.image" alt="Immagine del campo" class="img-fluid">
+  </div>
+</div>
+
+<ng-template #loading>
+  <p>Caricamento campo in corso...</p>
+</ng-template>

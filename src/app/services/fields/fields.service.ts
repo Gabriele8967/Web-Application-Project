@@ -8,13 +8,17 @@ import { Field } from '../../models/field';
 })
 export class FieldsService {
 
+  private apiUrl = 'http://localhost:8080/api/fields';  // URL del backend
+
   constructor(private http: HttpClient) { }
 
-  // Metodo per ottenere i campi
+  // Metodo per ottenere tutti i campi
   getFields(): Observable<Field[]> {
-    return this.http.get<Field[]>("http://localhost:8080/api/book-field");
+    return this.http.get<Field[]>(`${this.apiUrl}`);
   }
 
-
-
+  // Metodo per ottenere un campo specifico per ID
+  getCampoById(id: number): Observable<Field> {
+    return this.http.get<Field>(`${this.apiUrl}/${id}`);
+  }
 }

@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BookFieldComponent } from './book-field.component';
+import { SingleFieldComponent } from './single-field.component';
 
-describe('BookFieldComponent', () => {
-  let component: BookFieldComponent;
-  let fixture: ComponentFixture<BookFieldComponent>;
+describe('SingleFieldComponent', () => {
+  let component: SingleFieldComponent;
+  let fixture: ComponentFixture<SingleFieldComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [BookFieldComponent]
+      imports: [SingleFieldComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(BookFieldComponent);
+    fixture = TestBed.createComponent(SingleFieldComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

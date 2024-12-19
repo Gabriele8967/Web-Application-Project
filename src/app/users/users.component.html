@@ -1,5 +1,5 @@
 <div class="container overflow-hidden text-center mt-5">
-  <div class="row gy-2">
+  <div class="row gy-2" *ngIf="users.length > 0; else noUsers">
     <div class="col-12" *ngFor="let c of users">
       <div class="user-card d-flex align-items-center justify-content-between px-3 py-2 border rounded">
         <!-- Testo -->
@@ -28,4 +28,9 @@
       </div>
     </div>
   </div>
+  <ng-template #noUsers>
+    <div class="col-12">
+      <p>Nessun utente trovato.</p>
+    </div>
+  </ng-template>
 </div>
