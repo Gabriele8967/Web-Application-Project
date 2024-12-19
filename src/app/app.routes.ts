@@ -13,12 +13,14 @@ import {BookFieldComponent} from './book-field/book-field.component';
 import {BookLessonComponent} from './book-lesson/book-lesson.component';
 import {FindOpponentComponent} from './find-opponent/find-opponent.component';
 import {LoginComponent} from './login/login.component';
+import {RegistrazioneComponent} from './registrazione/registrazione.component';
 
 export const routes: Routes = [
 
 
   {path: "", component: LoginComponent},
   {path: "login", component: LoginComponent},
+  {path: "registrazione", component: RegistrazioneComponent},
   {path: "home", component: HomeComponent},
   {path: "profile", component: ProfileComponent, children: [
     {path: "set-dati", component: SetDatiComponent},
