@@ -1,0 +1,12 @@
+<div *ngIf="user">
+  <div class="user-details">
+    <img [src]="user.immagineProfilo" alt="{{ user.nome }}" class="user-image">
+    <div class="user-info">
+      <h2>{{ user.nome }} {{ user.cognome }}</h2>
+      <p><strong>Email:</strong> {{ user.email }}</p>
+      <p><strong>Username:</strong> {{ user.username }}</p>
+      <p><strong>Livello:</strong> {{ user.livello }}</p>
+      <button class="btn btn-danger">Banna</button>
+    </div>
+  </div>
+</div>

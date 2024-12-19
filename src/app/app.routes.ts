@@ -13,6 +13,7 @@ import {BookFieldComponent} from './book-field/book-field.component';
 import {BookLessonComponent} from './book-lesson/book-lesson.component';
 import {FindOpponentComponent} from './find-opponent/find-opponent.component';
 import {UsersComponent} from './users/users.component';
+import {SingleUserComponent} from './single-user/single-user.component';
 
 export const routes: Routes = [
 
@@ -32,7 +33,8 @@ export const routes: Routes = [
   {path: "users", component: UsersComponent},
   {path: "book-field", component: BookFieldComponent},
   {path: "book-lesson", component: BookLessonComponent},
-  {path: "find-opponent", component: FindOpponentComponent}
+  {path: "find-opponent", component: FindOpponentComponent},
+  {path: 'user/:id', component: SingleUserComponent}
 
 
 

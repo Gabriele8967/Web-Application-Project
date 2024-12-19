@@ -1,31 +1,28 @@
 <div class="container overflow-hidden text-center mt-5">
-  <div class="row gy-5">
-    <!-- Ciclo attraverso la lista di utenti -->
+  <div class="row gy-2">
     <div class="col-12" *ngFor="let c of users">
-
-      <!-- Card dell'utente -->
-      <div class="card mx-auto" style="width: 100%; margin-bottom: 20px;"> <!-- Card a larghezza completa -->
-
-        <!-- Titolo sopra l'immagine -->
-        <div class="card-title-wrapper" style="position: absolute; top: 10px; left: 0; right: 0; text-align: center; z-index: 1;">
-          <h5 class="card-title" style="background-color: rgba(0, 0, 0, 0.5); color: white; padding: 5px;">
-            {{ c.id }} - {{ c.nome }} {{ c.cognome }}
-          </h5>
+      <div class="user-card d-flex align-items-center justify-content-between px-3 py-2 border rounded">
+        <!-- Testo -->
+        <div class="card-text flex-grow-1 text-start">
+          <h6 class="mb-1">{{ c.id }} - {{ c.nome }} {{ c.cognome }}</h6>
+          <p class="mb-0"><strong>Username:</strong> {{ c.username }}</p>
+          <p class="mb-0"><strong>Email:</strong> {{ c.email }}</p>
+          <p class="mb-0"><strong>Numero:</strong> {{ c.numero }}</p>
+          <p class="mb-0"><strong>Livello:</strong> {{ c.livello }}</p>
         </div>
 
-        <!-- Immagine dell'utente -->
-        <img [src]="c.immagineProfilo || 'default-image.jpg'" class="card-img-top" style="height: 200px; object-fit: cover;" alt="Immagine di {{ c.nome }} {{ c.cognome }}">
+        <!-- Immagine -->
+        <div class="card-image ms-3">
+          <img [src]="c.immagineProfilo || 'default-image.jpg'"
+               alt="Immagine di {{ c.nome }} {{ c.cognome }}"
+               class="rounded-circle"
+               style="width: 70px; height: 70px; object-fit: cover;">
+        </div>
 
-        <!-- Corpo della card -->
-        <div class="card-body">
-          <p><strong>Username:</strong> {{ c.username }}</p>
-          <p><strong>Email:</strong> {{ c.email }}</p>
-          <p><strong>Numero:</strong> {{ c.numero }}</p>
-          <p><strong>Livello:</strong> {{ c.livello }}</p>
-
-          <!-- Pulsante per la prenotazione -->
-          <button routerLink="/ciupa" type="submit" class="long-button justify-content-center" [disabled]="!c.email">
-            Banna
+        <!-- Pulsante Gestione -->
+        <div class="ms-3">
+          <button class="btn btn-primary" (click)="gestisciUtente(c.id)">
+            Gestisci
           </button>
         </div>
       </div>
