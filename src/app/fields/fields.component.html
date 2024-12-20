@@ -11,14 +11,24 @@
         </div>
 
         <!-- Immagine della card -->
-        <img [src]="c.image" class="card-img-top" style="height: 200px; object-fit: cover;" alt="..."
-             height="1152" width="2048">
+        <img [src]="c.image" class="card-img-top" style="height: 200px; object-fit: cover;" alt="...">
 
         <div class="card-body">
-          <!-- Pulsante per gestire il campo che chiama la funzione gestisciCampo -->
-          <button (click)="gestisciCampo(c.id)" type="button" class="long-button justify-content-center">
+          <!-- Pulsante per gestire il campo -->
+          <button (click)="gestisciCampo(c.id)"
+                  [ngClass]="isFieldAvailable(c) ? 'btn-success' : 'btn-danger'"
+                  type="button" class="long-button justify-content-center">
             Gestisci campo
           </button>
+
+          <!-- Rettangoli per gli orari -->
+          <div class="orari">
+            <div *ngFor="let hour of hours"
+                 [ngClass]="getColor(c, hour)"
+                 class="time-slot">
+              {{ hour }}:00
+            </div>
+          </div>
         </div>
       </div>
     </div>

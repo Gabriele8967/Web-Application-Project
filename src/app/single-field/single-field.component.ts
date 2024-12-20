@@ -26,4 +26,28 @@ export class SingleFieldComponent implements OnInit {
       this.field = fields;
     });
   }
+  prenotaCampo(campo: any): void {
+    if (!campo.isOccupied) {
+      // Chiamata al servizio per prenotare il campo
+      this.service.prenotaCampo(campo.id, campo.time, campo).subscribe(updatedCampo => {
+        campo.isOccupied = true;
+        campo.idGiocatore1 = updatedCampo.idGiocatore1;
+        campo.idGiocatore2 = updatedCampo.idGiocatore2;
+        campo.idMaestro = updatedCampo.idMaestro;
+      });
+    }
+  }
+
+  // Metodo per eliminare la prenotazione
+  eliminaPrenotazione(campo: any): void {
+    if (campo.isOccupied) {
+      // Chiamata al servizio per eliminare la prenotazione
+      this.service.updateCampoOccupato(campo.id, campo.time, false).subscribe(updatedCampo => {
+        campo.isOccupied = false;
+        campo.idGiocatore1 = null;
+        campo.idGiocatore2 = null;
+        campo.idMaestro = null;
+      });
+    }
+  }
 }

@@ -22,4 +22,12 @@ export class FieldsService {
   getFieldById(id: number): Observable<Field> {
     return this.http.get<Field>(`${this.apiUrl}/${id}`);
   }
+  prenotaCampo(id: number, time: number, campo: any): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/prenota`, campo);
+  }
+
+  // Aggiornare stato di occupazione
+  updateCampoOccupato(id: number, time: number, isOccupied: boolean): Observable<any> {
+    return this.http.put<any>(`${this.apiUrl}/update/${id}/${time}`, { isOccupied });
+  }
 }
