@@ -16,4 +16,7 @@ export class UsersService {
   getUsers(): Observable<Users[]> {
     return this.http.get<Users[]>(this.apiUrl);  // Chiamata per ottenere tutti gli utenti
   }
+  getUserById(id: number): Observable<Users> {
+    return this.http.get<Users>(`${this.apiUrl}/${id}`);  // Chiamata GET per ottenere i dettagli dell'utente
+  }
 }
