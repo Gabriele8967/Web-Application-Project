@@ -1,12 +1,28 @@
-<div *ngIf="campo; else loading">
-  <h2>{{ campo.name }}</h2>
-  <p><strong>ID:</strong> {{ campo.id }}</p>
-  <p><strong>Stato:</strong> {{ campo.isOccupied ? 'Occupato' : 'Libero' }}</p>
-  <div *ngIf="campo.image">
-    <img [src]="campo.image" alt="Immagine del campo" class="img-fluid">
+<div class="container mt-5">
+  <div *ngIf="field.length > 0; else loading">
+    <div *ngFor="let campo of field">
+      <div class="row">
+        <div class="col-md-4">
+          <img [src]="campo?.image || 'default-field.jpg'" alt="Immagine del campo {{ campo?.name }}" class="img-fluid rounded" style="object-fit: cover;">
+        </div>
+        <div class="col-md-8">
+          <h2>{{ campo?.name }}</h2>
+          <p><strong>ID del Campo:</strong> {{ campo?.id }}</p>
+          <p><strong>Orario:</strong> {{ campo?.time }}:00</p>
+          <p><strong>Data:</strong> {{ campo?.date | date:'dd/MM/yyyy' }}</p>
+          <p><strong>Stato:</strong> {{ campo?.isOccupied ? 'Occupato' : 'Libero' }}</p>
+          <p *ngIf="campo?.idMaestro"><strong>ID Maestro:</strong> {{ campo?.idMaestro }}</p>
+          <div *ngIf="campo?.isOccupied">
+            <h5>Giocatori:</h5>
+            <p><strong>Giocatore 1:</strong> {{ campo?.idGiocatore1 }}</p>
+            <p><strong>Giocatore 2:</strong> {{ campo?.idGiocatore2 }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-</div>
 
-<ng-template #loading>
-  <p>Caricamento campo in corso...</p>
-</ng-template>
+  <ng-template #loading>
+    <p>Caricamento campo...</p>
+  </ng-template>
+</div>

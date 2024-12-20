@@ -13,17 +13,23 @@ import {FieldsService} from '../services/fields/fields.service';
   standalone: true,
   imports: [CommonModule, RouterLink] // Aggiungi CommonModule qui
 })
-export class FieldsComponent implements OnInit {  // Aggiunto OnInit per l'interfaccia ngOnInit
-  campi: Field[] = [];
+export class FieldsComponent implements OnInit {
+  fields: Field[] = [];
 
   constructor(private service: FieldsService, private router: Router) {}
 
   ngOnInit() {
     this.service.getFields().subscribe((fields: Field[]) => {
-      this.campi = fields;
+      // Filtra i duplicati in base all'ID del campo
+      this.fields = fields.filter((campo, index, self) =>
+          index === self.findIndex((t) => (
+            t.id === campo.id
+          ))
+      );
     });
   }
+
   gestisciCampo(id: number): void {
-    this.router.navigate([`/fields/${id}`]);  // Naviga alla pagina dell'utente con l'ID
+    this.router.navigate([`/fields/${id}`]); // Naviga alla pagina del campo
   }
 }

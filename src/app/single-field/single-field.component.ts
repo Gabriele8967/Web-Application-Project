@@ -1,27 +1,29 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';  // Importa CommonModule
-import { Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Field } from '../models/field';
 import { FieldsService } from '../services/fields/fields.service';
+import { CommonModule } from '@angular/common';  // Importa CommonModule
 
 @Component({
   selector: 'app-single-field',
-  imports: [CommonModule],  // Aggiungi CommonModule qui
   templateUrl: './single-field.component.html',
+  styleUrls: ['./single-field.component.css'],
   standalone: true,
-  styleUrls: ['./single-field.component.css']
+  imports: [CommonModule]  // Aggiungi CommonModule
 })
 export class SingleFieldComponent implements OnInit {
-  campo: Field | null = null;
+  field: Field[] = []; // Modificato da 'Field | undefined' a 'Field[]'
 
-  constructor(private service: FieldsService, private router: Router) {}
+  constructor(
+    private service: FieldsService,
+    private route: ActivatedRoute
+  ) {}
 
-  ngOnInit(): void {
-    const id = this.router.url.split('/').pop();  // ottieni id dalla URL
-    if (id) {
-      this.service.getCampoById(+id).subscribe((campo) => {
-        this.campo = campo;
-      });
-    }
+  ngOnInit() {
+    const id = +this.route.snapshot.paramMap.get('id')!;
+    // @ts-ignore
+    this.service.getFieldById(id).subscribe((fields: Field[]) => {
+      this.field = fields;
+    });
   }
 }

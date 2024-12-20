@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Field } from '../../models/field';
+import {Users} from '../../models/users';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,7 @@ export class FieldsService {
   }
 
   // Metodo per ottenere un campo specifico per ID
-  getCampoById(id: number): Observable<Field> {
+  getFieldById(id: number): Observable<Field> {
     return this.http.get<Field>(`${this.apiUrl}/${id}`);
   }
 }
