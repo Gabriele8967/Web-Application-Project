@@ -11,7 +11,7 @@
         <p><strong>Numero:</strong> {{ user.numero }}</p>
         <p><strong>Livello:</strong> {{ user.livello }}</p>
         <!-- Pulsante per bannare (da implementare) -->
-        <button class="btn btn-danger">Banna</button>
+        <button class="btn btn-danger" (click)="banUser(user.id)">Banna</button>
       </div>
     </div>
   </div>

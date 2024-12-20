@@ -22,6 +22,7 @@ export class UsersComponent implements OnInit {
       this.users = users;
     });
   }
+
   gestisciUtente(id: number): void {
     this.router.navigate([`/users/${id}`]);  // Naviga alla pagina dell'utente con l'ID
   }
