@@ -6,7 +6,6 @@ import {NgForOf, NgOptimizedImage} from '@angular/common';
   selector: 'app-book-field',
   imports: [
     RouterLink,
-    NgOptimizedImage,
     NgForOf
   ],
   templateUrl: './book-field.component.html',

@@ -1,17 +1,17 @@
 import { Routes } from '@angular/router';
-import {ProfileComponent} from './profile/profile.component';
-import {HomeComponent} from './home/home.component';
-import {ProgressGraphComponent} from './progress-graph/progress-graph.component';
-import {SetDatiComponent} from './set-dati/set-dati.component';
-import {SetImgProfileComponent} from './set-img-profile/set-img-profile.component';
-import {SetPasswordComponent} from './set-password/set-password.component';
-import {ReservationsComponent} from './reservations/reservations.component';
-import {ReservationHistoryComponent} from './reservation-history/reservation-history.component';
-import {AbilitiesComponent} from './abilities/abilities.component';
-import {MatchHistoryComponent} from './match-history/match-history.component';
-import {BookFieldComponent} from './book-field/book-field.component';
-import {BookLessonComponent} from './book-lesson/book-lesson.component';
-import {FindOpponentComponent} from './find-opponent/find-opponent.component';
+import {ProfileComponent} from './Components/profile/profile.component';
+import {HomeComponent} from './Components/home/home.component';
+import {ProgressGraphComponent} from './Components/progress-graph/progress-graph.component';
+import {SetDatiComponent} from './Components/set-dati/set-dati.component';
+import {SetImgProfileComponent} from './Components/set-img-profile/set-img-profile.component';
+import {SetPasswordComponent} from './Components/set-password/set-password.component';
+import {ReservationsComponent} from './Components/reservations/reservations.component';
+import {ReservationHistoryComponent} from './Components/reservation-history/reservation-history.component';
+import {AbilitiesComponent} from './Components/abilities/abilities.component';
+import {MatchHistoryComponent} from './Components/match-history/match-history.component';
+import {BookFieldComponent} from './Components/book-field/book-field.component';
+import {BookLessonComponent} from './Components/book-lesson/book-lesson.component';
+import {FindOpponentComponent} from './Components/find-opponent/find-opponent.component';
 
 export const routes: Routes = [
 
