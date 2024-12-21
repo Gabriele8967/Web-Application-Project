@@ -25,4 +25,7 @@ export class UsersService {
     return this.http.get<Request>(`${this.apiUrl}/ban/${id}`);
   }
 
+  unbanUser(id: number): Observable<Request> {
+    return this.http.get<Request>(`${this.apiUrl}/unban/${id}`);
+  }
 }

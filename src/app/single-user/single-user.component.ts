@@ -52,4 +52,26 @@ export class SingleUserComponent implements OnInit {
       }
     });
   }
+
+  unbanUser(id: number): void {
+    this.service.unbanUser(id).subscribe({
+      next: (response: Request) => {
+        // Mostra un messaggio di alert in base al risultato del backend
+        if (response.esito) {
+          alert(`Successo: ${response.messaggio}`);
+        } else {
+          alert(`Errore: ${response.messaggio}`);
+        }
+        // Aggiorna la lista degli utenti solo se il ban è stato effettuato con successo
+        if (response.esito) {
+          this.router.navigate([`/users`]);
+          this.ngOnInit();
+        }
+      },
+      error: (error) => {
+        // Gestione errori in caso di problemi nella comunicazione HTTP
+        alert(`Errore nella comunicazione con il backend: ${error.message}`);
+      }
+    });
+  }
 }
