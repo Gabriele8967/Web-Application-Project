@@ -7,4 +7,5 @@ export interface Users {
   numero: number;
   immagineProfilo: string;
   livello: number;
+  bannato: boolean;
 }
