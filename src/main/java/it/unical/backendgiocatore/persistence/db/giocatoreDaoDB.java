@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class giocatoreDaoDB implements giocatoreDao {
-  Connection conn;
+  private final Connection conn;
   public giocatoreDaoDB(Connection connection) {
     this.conn = connection;
   }
