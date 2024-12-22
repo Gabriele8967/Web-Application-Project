@@ -1,0 +1,10 @@
+/* Stile per evidenziare l'utente bannato */
+.banned {
+  background-color: #f8d7da; /* Colore di sfondo rosso chiaro */
+  border: 1px solid #f5c6cb; /* Bordo rosso chiaro */
+}
+
+/* Colore del testo per l'utente bannato */
+.banned h2, .banned p {
+  color: #721c24; /* Colore del testo rosso scuro */
+}

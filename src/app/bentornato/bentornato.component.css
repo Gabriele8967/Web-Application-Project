@@ -1,67 +1,101 @@
-/* Contenitore principale */
-.cont_sm.cont.center {
-  text-align: center;
-  margin: 0 auto;
-  padding: 50px 20px;
+/* Rettangolo blu che copre solo fino ai tennisti */
+.blue-rectangle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 400px; /* Altezza per coprire solo fino ai tennisti */
+  background-color: #020940;
+  z-index: -1; /* Posiziona il rettangolo blu dietro il contenuto */
 }
 
-.section_title {
-  font-size: 3rem;
-  font-weight: bold;
-  color: #333;
-  display: inline-block;
-  position: relative;
-}
-
-/* Wrapper per immagini (racchetta e pallina) */
-.img-wrapper {
-  display: inline-block;
-  position: relative;
-  margin: 0 10px;
-}
-
-/* Immagini dei giocatori */
+/* Contenitore principale per la sezione dei giocatori */
 .players {
   position: relative;
-  text-align: center; /* Centra il contenuto all'interno */
-  height: 200px; /* Altezza per il contenitore dei tennisti */
+  text-align: center;
+  height: 400px; /* Altezza per dare spazio alle immagini */
+  z-index: 1; /* Assicurati che il contenuto sia sopra il rettangolo blu */
 }
 
-.player {
+
+/* Tennista a sinistra */
+.player-left {
   position: absolute;
   bottom: 0;
-  height: 200px;
-  width: auto;
-}
-
-.player-left {
   left: 10%;
+  height: 200px; /* Altezza dell'immagine del tennista */
   animation: slideInLeft 1s ease-out;
 }
 
+/* Tennista a destra */
 .player-right {
+  position: absolute;
+  bottom: 0;
   right: 10%;
+  height: 200px; /* Altezza dell'immagine del tennista */
   animation: slideInRight 1s ease-out;
 }
 
-/* Posizionamento centrale per racchetta e pallina */
-.rack {
-  position: absolute;
-  top: 50%; /* Posiziona la racchetta al centro verticale */
-  left: 50%; /* Posiziona la racchetta al centro orizzontale */
-  transform: translate(-60%, -50%); /* Centratura perfetta */
-  height: 100px; /* Modifica questa proprietà per cambiare la dimensione della racchetta */
-  width: auto; /* La larghezza si adatta automaticamente per mantenere le proporzioni */
+
+/* Scritta "Admin" con effetto macchina da scrivere */
+.typing {
+  font-size: 5rem;
+  font-family: 'Gridink Extra Bold Oblique', sans-serif; /* Usa il nuovo font */
+  font-weight: bold;
+  color: white;
+  padding-right: 5px;
+  white-space: nowrap;
+  overflow: hidden;
+  display: inline-block;
+  position: relative;
+  animation: fadeInOut 3s ease-in-out infinite, typingScroll 4s steps(10) 1s forwards;
 }
 
+/* Animazione Fade in/out per il testo */
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+  }
+  25% {
+    opacity: 1;
+  }
+  75% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Animazione di cancellazione (effetto macchina da scrivere che cancella la parola tranne la A) */
+@keyframes erase {
+  0% {
+    width: 5ch;
+  }
+  50% {
+    width: 1ch; /* Mantiene solo la "A" visibile */
+  }
+  100% {
+    width: 1ch; /* Mantiene solo la "A" visibile */
+  }
+}
+
+/* Effetto lampeggiante del cursore */
+@keyframes blink {
+  50% {
+    border-color: transparent;
+  }
+}
+
+/* Pallina da tennis */
 .ball {
   position: absolute;
-  top: 50%; /* Posiziona la pallina a metà altezza */
-  left: 50%; /* Posiziona la pallina al centro orizzontalmente */
-  transform: translate(-50%, -50%); /* Centratura perfetta */
-  height: 30px; /* Puoi regolare l'altezza della pallina */
+  top: 200px; /* Sposta la pallina 200px sotto il top della pagina */
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 30px;
   width: auto;
-  animation: bounce 2s infinite; /* Animazione bounce per la pallina */
+  animation: bounce 2s infinite;
 }
 
 /* Animazione Bounce per la pallina */
@@ -72,10 +106,9 @@
   40% {
     transform: translate(-50%, -50%) translateY(+30px); /* Pallina si sposta sopra */
   }
-
 }
 
-/* Animazioni slide */
+/* Animazioni slide per i tennisti */
 @keyframes slideInLeft {
   from {
     transform: translateX(-100%);

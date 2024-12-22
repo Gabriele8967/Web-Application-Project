@@ -1,13 +1,14 @@
 <div class="container overflow-hidden text-center mt-5">
   <div class="row gy-2" *ngIf="users.length > 0; else noUsers">
     <div class="col-12" *ngFor="let c of users">
-      <div class="user-card d-flex align-items-center justify-content-between px-3 py-2 border rounded">
+      <div class="user-card d-flex align-items-center justify-content-between px-3 py-2 border rounded"
+           [ngClass]="{'bg-danger text-white': c.bannato}">
         <!-- Testo -->
         <div class="card-text flex-grow-1 text-start">
           <h6 class="mb-1">{{ c.id }} - {{ c.nome }} {{ c.cognome }}</h6>
           <p class="mb-0"><strong>Username:</strong> {{ c.username }}</p>
           <p class="mb-0"><strong>Email:</strong> {{ c.email }}</p>
-          <p class="mb-0"><strong>Numero:</strong> {{ c.numero }}</p>
+          <p class="mb-0"><strong>Id:</strong> {{ c.id }}</p>
           <p class="mb-0"><strong>Livello:</strong> {{ c.livello }}</p>
         </div>
 

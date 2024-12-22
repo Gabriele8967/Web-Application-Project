@@ -1,15 +1,35 @@
+/* Stili per la card utente */
 .user-card {
   background-color: #f8f9fa; /* Colore chiaro per il background */
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2); /* Leggera ombra */
   transition: transform 0.2s ease, box-shadow 0.2s ease;
-  border-left: 5px solid #007bff; /* Bordo colorato per differenziare */
+  border-left: 5px solid #007bff; /* Bordo blu per differenziare */
+  border-radius: 5px; /* Angoli arrotondati */
 }
 
+/* Stili quando la card è in hover */
 .user-card:hover {
   transform: scale(1.02); /* Effetto hover */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Ombra più evidente */
 }
 
+/* Stili per la card dell'utente bannato */
+
+.user-card.bg-danger {
+  background-color: #fae2e4 !important;
+}
+
+
+
+.user-card.bg-danger .card-text p {
+  color: red; /* Testo in rosso scuro per gli utenti bannati */
+}
+
+.user-card.bg-danger .card-text h6 {
+  color: #842029; /* Colore titolo in rosso scuro */
+}
+
+/* Testo e bordi generali */
 .card-text h6 {
   font-size: 1rem;
   font-weight: bold;
@@ -21,11 +41,26 @@
   color: #6c757d; /* Grigio scuro */
 }
 
+/* Immagine del profilo */
 .card-image img {
   border: 2px solid #dee2e6; /* Bordo sottile */
-  transition: transform 0.2s ease;
+  border-radius: 50%; /* Forma circolare */
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .card-image img:hover {
   transform: scale(1.1); /* Leggero zoom sulla foto */
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3); /* Ombra più evidente */
+}
+
+/* Pulsante Gestisci */
+.btn-primary {
+  background-color: #007bff; /* Blu standard */
+  border: none; /* Rimuove il bordo */
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3; /* Blu più scuro */
+  transform: scale(1.05); /* Leggero ingrandimento al passaggio del mouse */
 }

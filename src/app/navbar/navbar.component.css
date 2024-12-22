@@ -1,50 +1,55 @@
-.fa-user {
-  font-size: 25px;
-  margin-top: 7px;
-  cursor: pointer;
+/* Rimuovi lo sfondo dai pulsanti e lascia solo l'icona */
+.navbar-nav .nav-item .btn {
+  background: none; /* Rimuove lo sfondo del pulsante */
+  border: none; /* Rimuove il bordo del pulsante */
+  padding: 0; /* Rimuove il padding per fare spazio solo all'icona */
+  color: white; /* Colore di base delle icone (bianco) */
+  display: flex;
+  align-items: center; /* Centra verticalmente l'icona */
 }
 
-.btn {
-  border: none;
+/* Icona del profilo */
+.navbar-nav .nav-item .btn-profile i {
+  font-size: 1.5rem; /* Imposta la dimensione dell'icona */
+  color: white; /* Colore di base bianco */
+  transition: color 0.3s ease; /* Transizione dolce per il colore */
 }
 
-.btn:hover {
-  background-color: #020940;
+/* Icona del logout */
+.navbar-nav .nav-item .btn-logout i {
+  font-size: 1.5rem; /* Imposta la dimensione dell'icona */
+  color: white; /* Colore di base bianco */
+  transition: color 0.3s ease; /* Transizione dolce per il colore */
 }
 
-
-.fa-bars {
-  font-size: 25px;
-  color: white;
+/* Hover sulle icone */
+.navbar-nav .nav-item .btn-profile:hover i {
+  color: yellow; /* Colore giallo per l'icona del profilo quando si passa sopra */
 }
 
-.fa-bars:hover {
-  color: #00bbff;
-  animation: ledPulse 1s infinite;
+/* Hover sulla icona del logout (rosso) */
+.navbar-nav .nav-item .btn-logout:hover i {
+  color: red; /* Colore rosso per l'icona del logout quando si passa sopra */
 }
 
-
-
-input:focus {
-  outline: none; /* Rimuove l'effetto predefinito del browser */
-  border: 2px solid dodgerblue; /* Cambia il colore del bordo */
-  box-shadow: 0 0 5px rgba(40, 167, 69, 0.5); /* Ombra personalizzata (verde in questo esempio) */
-}
-
+/* Navbar personalizzata */
 .navbar-custom {
-  background-color: #020940; /* Verde personalizzato */
-  color: white; /* Testo bianco */
+  background-color: #020940; /* Colore di sfondo personalizzato */
+  color: white; /* Colore del testo */
 }
 
-.navbar-custom .nav-link .bg-body-tertiary {
-  color: white; /* Testo dei link bianco */
+/* Posizionamento dell'icona Profilo a sinistra */
+.d-flex {
+  display: flex;
+  align-items: center; /* Allinea l'icona e il logo al centro verticalmente */
 }
 
-.navbar-nav .nav-item:hover .nav-link{
-  color: #00bbff;
+/* Spazio tra l'icona del profilo e il logo */
+.me-3 {
+  margin-right: 15px; /* Spazio tra il profilo e il logo */
 }
 
-h3 {
-  font-family: Calibri Leelawadee, sans-serif;
-  font-style: oblique;
+/* Posizionamento del logout a destra */
+.ms-auto {
+  margin-left: auto; /* Spinge il logout a destra */
 }

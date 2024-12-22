@@ -8,7 +8,7 @@ import {NavbarButtonsComponent} from '../navbar-buttons/navbar-buttons.component
 @Component({
   selector: 'app-navbar',
   imports: [
-    SidebarComponent,
+
     RouterLink,
     CardsComponent,
     NavbarButtonsComponent,
