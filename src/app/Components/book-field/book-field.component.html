@@ -2,17 +2,19 @@
   <div class="row gy-5">
 
     <div class="col-lg-4 col-md-6 col-sm-12" *ngFor="let c of campi">
+      <div class="" *ngFor="let o of orariDisponibili">
       <div class="card mx-auto" style="width: 90%;">
 
         <!-- Titolo sopra l'immagine -->
         <div class="card-title-wrapper" style="position: absolute; top: 10px; left: 0; right: 0; text-align: center; z-index: 1;">
           <h5 class="card-title" style="background-color: rgba(0, 0, 0, 0.5); color: white; padding: 5px;">
-            {{ c.title }}
+            Campo {{ c.id }}
           </h5>
-        </div>
 
+        </div>
+      </div>
         <!-- Immagine della card -->
-        <img [src]="c.image" class="card-img-top" style="height: 200px; object-fit: cover;" alt="..."
+        <img [src]="c.immagine" class="card-img-top" style="height: 200px; object-fit: cover;" alt="..."
              height="1152" width="2048">
 
         <div class="card-body">

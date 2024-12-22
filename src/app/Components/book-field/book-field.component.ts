@@ -1,6 +1,10 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {RouterLink} from '@angular/router';
-import {NgForOf, NgOptimizedImage} from '@angular/common';
+import {NgForOf} from '@angular/common';
+import {CampoService} from '../../Services/campo.service';
+import {Campo} from '../../Model/campo';
+import {DisponibilitaService} from '../../Services/disponibilita.service';
+import {OrariDisponibili} from '../../Model/orariDisponibili';
 
 @Component({
   selector: 'app-book-field',
@@ -12,17 +16,23 @@ import {NgForOf, NgOptimizedImage} from '@angular/common';
   standalone: true,
   styleUrl: './book-field.component.css'
 })
-export class BookFieldComponent {
-  campi = [
-    { id: 1, title: 'Campo 1',  image: '/assets/image/campo1.jpg' },
-    { id: 2, title: 'Campo 2',  image: '/assets/image/campo2.jpg' },
-    { id: 3, title: 'Campo 3',  image: '/assets/image/campo3.jpg' },
-    { id: 4, title: 'Campo 4',  image: '/assets/image/campo4.jpg' },
-    { id: 5, title: 'Campo 5',  image: '/assets/image/campo5.jpg' },
-    { id: 6, title: 'Campo 6',  image: '/assets/image/campo6.jpg' },
-    { id: 7, title: 'Campo 7',  image: '/assets/image/campo7.jpg' },
-    { id: 8, title: 'Campo 8',  image: '/assets/image/campo8.jpg' },
-    { id: 9, title: 'Campo 9',  image: '/assets/image/campo9.jpg' },
-    { id: 10, title: 'Campo 10',  image: '/assets/image/campo10.jpg' },
-  ];
+export class BookFieldComponent implements OnInit{
+
+  constructor(public campoService:CampoService,public disponibilitaService: DisponibilitaService) {}
+  campi : Campo[] = [];
+  orariDisponibili : OrariDisponibili[] = [];
+
+  ngOnInit(): void {
+        this.campoService.getCampi().subscribe(res=>{
+          this.campi = res;
+        })
+
+        this.disponibilitaService.getDisponibilita().subscribe(res=>{
+          this.orariDisponibili = res;
+        })
+    }
+
+
+
+
 }
