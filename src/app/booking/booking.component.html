@@ -1,0 +1,42 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-12">
+      <h2 class="text-center">Prenotazione Campo</h2>
+
+      <!-- Se idCampo o orario non sono definiti, mostra un messaggio di errore -->
+      <div *ngIf="!idCampo || !orario; else bookingForm">
+        <p class="text-danger text-center">ID del campo o orario non valido. Si prega di riprovare.</p>
+      </div>
+
+      <!-- Modulo di prenotazione -->
+      <ng-template #bookingForm>
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Campo {{ idCampo }} - Orario: {{ orario }}:00</h5>
+
+            <!-- Campo di input per ID Giocatore 1 -->
+            <div class="mb-3">
+              <label for="idGiocatore1" class="form-label">ID Giocatore 1</label>
+              <input type="number" id="idGiocatore1" class="form-control" [(ngModel)]="idGiocatore1" name="idGiocatore1" placeholder="Inserisci l'ID Giocatore 1" required>
+            </div>
+
+            <!-- Campo di input per ID Giocatore 2 -->
+            <div class="mb-3">
+              <label for="idGiocatore2" class="form-label">ID Giocatore 2</label>
+              <input type="number" id="idGiocatore2" class="form-control" [(ngModel)]="idGiocatore2" name="idGiocatore2" placeholder="Inserisci l'ID Giocatore 2" required>
+            </div>
+
+            <!-- Campo di input per ID Maestro -->
+            <div class="mb-3">
+              <label for="idMaestro" class="form-label">ID Maestro</label>
+              <input type="number" id="idMaestro" class="form-control" [(ngModel)]="idMaestro" name="idMaestro" placeholder="Inserisci l'ID del Maestro">
+            </div>
+
+            <!-- Pulsante di prenotazione -->
+            <button class="btn btn-primary" (click)="prenota()">Prenota il Campo</button>
+          </div>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</div>

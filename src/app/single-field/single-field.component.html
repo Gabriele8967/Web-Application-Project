@@ -18,15 +18,23 @@
           <!-- Dettagli giocatori se il campo è occupato -->
           <div *ngIf="campo?.isOccupied">
             <h5>Giocatori:</h5>
-            <p><strong>Giocatore 1:</strong> {{ campo?.idGiocatore1 }}</p>
-            <p><strong>Giocatore 2:</strong> {{ campo?.idGiocatore2 }}</p>
-            <!-- Pulsante per eliminare la prenotazione se il campo è occupato -->
+            <p><strong>Giocatore 1:</strong>
+              <a [routerLink]="['/users', campo?.idGiocatore1]" class="text-decoration-none">
+                {{ campo?.idGiocatore1 }}
+              </a>
+            </p>
+            <p><strong>Giocatore 2:</strong>
+              <a [routerLink]="['/users', campo?.idGiocatore2]" class="text-decoration-none">
+                {{ campo?.idGiocatore2 }}
+              </a>
+            </p>
             <button class="btn btn-danger mt-3" (click)="eliminaPrenotazione(campo)">Elimina Prenotazione</button>
           </div>
 
           <!-- Pulsante per prenotare se il campo è libero -->
           <div *ngIf="!campo?.isOccupied">
-            <button class="btn btn-primary mt-3" (click)="prenotaCampo(campo)">Prenota Campo</button>
+            <!-- Naviga alla pagina di prenotazione per l'orario specifico -->
+            <button class="btn btn-primary mt-3" (click)="goToBookingPage(campo)">Prenota Campo</button>
           </div>
         </div>
       </div>

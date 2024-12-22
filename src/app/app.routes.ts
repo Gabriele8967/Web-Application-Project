@@ -15,6 +15,7 @@ import {UsersComponent} from './users/users.component';
 import {SingleUserComponent} from './single-user/single-user.component';
 import {FieldsComponent} from './fields/fields.component';
 import {SingleFieldComponent} from './single-field/single-field.component';
+import {BookingComponent} from './booking/booking.component';
 
 export const routes: Routes = [
 
@@ -36,7 +37,8 @@ export const routes: Routes = [
   {path: "book-lesson", component: BookLessonComponent},
   {path: "find-opponent", component: FindOpponentComponent},
   {path: 'users/:id', component: SingleUserComponent },
-  {path: 'fields/:id', component: SingleFieldComponent }
+  {path: 'fields/:id', component: SingleFieldComponent },
+  { path: 'fields/:id/:time', component: BookingComponent }
 
 
 

@@ -22,7 +22,8 @@ export class FieldsService {
   getFieldById(id: number): Observable<Field> {
     return this.http.get<Field>(`${this.apiUrl}/${id}`);
   }
-  prenotaCampo(id: number, time: number, campo: any): Observable<any> {
+
+    prenotaCampo(id: number, time: number, campo: any, idGiocatore2: number, idMaestro: number | undefined): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}/prenota`, campo);
   }
 
