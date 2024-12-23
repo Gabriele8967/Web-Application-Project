@@ -4,5 +4,5 @@ export interface Disponibilita{
   campo: Campo;
   orario: string;
   data: string;
-  stato: number;
+
 }

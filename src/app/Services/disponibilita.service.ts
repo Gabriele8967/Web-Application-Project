@@ -12,7 +12,12 @@ export class DisponibilitaService {
 
   constructor(public http: HttpClient) {}
 
+  //servizio per caricare gli orari disponibli dei campi
   getDisponibilita(): Observable<OrariDisponibili[]> {
     return this.http.get<OrariDisponibili[]>(this.url + "/disponibilita");
   }
+
+  //servizio per caricare le prenotazioni delle partite in attesa di match
+
+
 }

@@ -12,6 +12,7 @@ import {MatchHistoryComponent} from './Components/match-history/match-history.co
 import {BookFieldComponent} from './Components/book-field/book-field.component';
 import {BookLessonComponent} from './Components/book-lesson/book-lesson.component';
 import {FindOpponentComponent} from './Components/find-opponent/find-opponent.component';
+import {MatchmakingComponent} from './Components/matchmaking/matchmaking.component';
 
 export const routes: Routes = [
 
@@ -30,7 +31,8 @@ export const routes: Routes = [
   },
   {path: "book-field", component: BookFieldComponent},
   {path: "book-lesson", component: BookLessonComponent},
-  {path: "find-opponent", component: FindOpponentComponent}
+  {path: "find-opponent", component: FindOpponentComponent},
+  {path: "matchmaking", component: MatchmakingComponent}
 
 
 
