@@ -37,7 +37,7 @@ export const routes: Routes = [
   {path: "book-lesson", component: BookLessonComponent},
   {path: "find-opponent", component: FindOpponentComponent},
   {path: 'users/:id', component: SingleUserComponent },
-  {path: 'fields/:id', component: SingleFieldComponent },
+  {path: 'fields/:date/:id', component: SingleFieldComponent },
   { path: 'fields/:id/:time', component: BookingComponent }
 
 

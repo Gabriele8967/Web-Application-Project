@@ -23,8 +23,9 @@ export class SingleFieldComponent implements OnInit {
 
   ngOnInit() {
     const id = +this.route.snapshot.paramMap.get('id')!;
+    const date = this.route.snapshot.paramMap.get('date');
     // @ts-ignore
-    this.service.getFieldById("2024-12-23", id).subscribe((fields: Field[]) => {
+    this.service.getFieldById(date, id).subscribe((fields: Field[]) => {
       this.field = fields;
     });
   }

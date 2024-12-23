@@ -22,6 +22,7 @@ export class FieldsComponent implements OnInit {
 
   ngOnInit() {
     const defaultDate = new Date().toISOString().split('T')[0];
+    this.selectedDate = defaultDate;
     this.loadFields(defaultDate);
   }
 
@@ -65,11 +66,12 @@ export class FieldsComponent implements OnInit {
   }
 
   gestisciCampo(id: number): void {
-    this.router.navigate([`/fields/${id}`]);
+    this.router.navigate([`/fields/${this.selectedDate}/${id}`]);
   }
 
   navigateToDate(): void {
     if (this.selectedDate) {
+      this.loadFields(this.selectedDate);
       this.router.navigate([`/fields/${this.selectedDate}`]);
     }
   }
