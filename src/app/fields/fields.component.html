@@ -1,17 +1,27 @@
 <div class="container overflow-hidden text-center mt-5">
+  <!-- Selettore di data -->
+  <div class="date-selector mb-4">
+    <label for="date">Seleziona una data:</label>
+    <input id="date" type="date" [(ngModel)]="selectedDate" class="form-control d-inline-block w-auto" />
+    <button (click)="navigateToDate()" class="btn btn-primary ml-2">Vai alla data</button>
+  </div>
+
+  <!-- Lista dei campi -->
   <div class="row gy-5">
     <div class="col-lg-4 col-md-6 col-sm-12" *ngFor="let c of fields">
       <div class="card mx-auto" style="width: 90%;">
 
         <!-- Titolo sopra l'immagine -->
-        <div class="card-title-wrapper" style="position: absolute; top: 10px; left: 0; right: 0; text-align: center; z-index: 1;">
-          <h5 class="card-title" style="background-color: rgba(0, 0, 0, 0.5); color: white; padding: 5px;">
+        <div class="card-title-wrapper"
+             style="position: absolute; top: 10px; left: 0; right: 0; text-align: center; z-index: 1;">
+          <h5 class="card-title"
+              style="background-color: rgba(0, 0, 0, 0.5); color: white; padding: 5px;">
             {{ c.name }}
           </h5>
         </div>
 
         <!-- Immagine della card -->
-        <img [src]="c.image" class="card-img-top" style="height: 200px; object-fit: cover;" alt="...">
+        <img [src]="c.image" class="card-img-top" style="height: 200px; object-fit: cover;" alt="Immagine campo">
 
         <div class="card-body">
           <!-- Pulsante per gestire il campo -->
@@ -22,10 +32,10 @@
           </button>
 
           <!-- Rettangoli per gli orari -->
-          <div class="orari">
+          <div class="orari mt-3">
             <div *ngFor="let hour of hours"
                  [ngClass]="getColor(c, hour)"
-                 class="time-slot">
+                 class="time-slot d-inline-block p-2 m-1 border rounded">
               {{ hour }}:00
             </div>
           </div>

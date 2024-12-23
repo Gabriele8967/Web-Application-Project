@@ -33,7 +33,7 @@ export const routes: Routes = [
     ],
   },
   {path: "users", component: UsersComponent},
-  {path: "fields", component: FieldsComponent},
+  {path: 'fields/:date', component: FieldsComponent },
   {path: "book-lesson", component: BookLessonComponent},
   {path: "find-opponent", component: FindOpponentComponent},
   {path: 'users/:id', component: SingleUserComponent },

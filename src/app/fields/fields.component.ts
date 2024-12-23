@@ -1,33 +1,36 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common'; // Importa CommonModule
-
-import {Router, RouterLink} from '@angular/router';
-import {Field} from '../models/field';
-import {FieldsService} from '../services/fields/fields.service';
-
+import { CommonModule } from '@angular/common';
+import { Router, RouterLink } from '@angular/router';
+import { Field } from '../models/field';
+import { FieldsService } from '../services/fields/fields.service';
+import {FormsModule} from '@angular/forms';
 
 @Component({
   selector: 'app-fields',
   templateUrl: './fields.component.html',
   styleUrls: ['./fields.component.css'],
   standalone: true,
-  imports: [CommonModule, RouterLink] // Aggiungi CommonModule qui
+  imports: [CommonModule, RouterLink, FormsModule]
 })
 export class FieldsComponent implements OnInit {
   fields: Field[] = [];
-  hours: number[] = [17, 18, 19, 20]
+  hours: number[] = [17, 18, 19, 20];
   fieldStatus: { [key: number]: { [hour: number]: boolean } } = {};
+  selectedDate: string = ''; // Data selezionata dall'utente
 
   constructor(private service: FieldsService, private router: Router) {}
 
   ngOnInit() {
-    this.service.getFields("2024-12-23").subscribe((fields: Field[]) => {
-      // Filtra i duplicati in base all'ID del campo
-      const uniqueFields = fields.filter((campo, index, self) =>
-        index === self.findIndex((t) => t.id === campo.id)
+    const defaultDate = new Date().toISOString().split('T')[0];
+    this.loadFields(defaultDate);
+  }
+
+  loadFields(date: string) {
+    this.service.getFields(date).subscribe((fields: Field[]) => {
+      const uniqueFields = fields.filter(
+        (campo, index, self) => index === self.findIndex((t) => t.id === campo.id)
       );
 
-      // Popola la variabile fieldStatus con gli orari e lo stato di occupazione
       uniqueFields.forEach((field) => {
         if (!this.fieldStatus[field.id]) {
           this.fieldStatus[field.id] = {};
@@ -36,35 +39,25 @@ export class FieldsComponent implements OnInit {
           const fieldAtHour = fields.find(
             (f) => f.id === field.id && f.time === hour
           );
-          if (fieldAtHour) {
-            this.fieldStatus[field.id][hour] = fieldAtHour.isOccupied;
-          } else {
-            this.fieldStatus[field.id][hour] = false; // Se non c'è, consideriamo l'orario come disponibile
-          }
+          this.fieldStatus[field.id][hour] = fieldAtHour ? fieldAtHour.isOccupied : false;
         });
       });
 
-      this.fields = uniqueFields; // Assegna i campi filtrati alla variabile fields
+      this.fields = uniqueFields;
     });
   }
 
-  // Funzione per determinare se un orario specifico per un campo è disponibile
   isTimeAvailableForField(field: Field, hour: number): boolean {
-    // Trova il campo con lo stesso id e ora specificata
-    const fieldTime = this.fields.filter(
+    const fieldTime = this.fields.find(
       (f) => f.id === field.id && f.time === hour
-    )[0]; // Restituisce il primo elemento che corrisponde
-
-    // Se fieldTime è definito, ritorna true solo se non è occupato
-    return fieldTime ? !fieldTime.isOccupied : true; // Considera l'orario disponibile se non trovato
+    );
+    return fieldTime ? !fieldTime.isOccupied : true;
   }
 
-  // Funzione per determinare se un campo è disponibile in tutti gli orari
   isFieldAvailable(field: Field): boolean {
     return this.hours.every((hour) => this.isTimeAvailableForField(field, hour));
   }
 
-  // Funzione per determinare il colore dell'orario in base alla disponibilità
   getColor(field: Field, hour: number): string {
     return this.fieldStatus[field.id] && this.fieldStatus[field.id][hour]
       ? 'occupied'
@@ -73,5 +66,11 @@ export class FieldsComponent implements OnInit {
 
   gestisciCampo(id: number): void {
     this.router.navigate([`/fields/${id}`]);
+  }
+
+  navigateToDate(): void {
+    if (this.selectedDate) {
+      this.router.navigate([`/fields/${this.selectedDate}`]);
+    }
   }
 }

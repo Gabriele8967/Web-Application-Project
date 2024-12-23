@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import {RouterLink} from '@angular/router';
-import {NgOptimizedImage} from '@angular/common';
+import { RouterLink } from '@angular/router';
+import { NgOptimizedImage } from '@angular/common';
 
 @Component({
   selector: 'app-cards',
@@ -10,9 +10,13 @@ import {NgOptimizedImage} from '@angular/common';
   ],
   templateUrl: './cards.component.html',
   standalone: true,
-  styleUrl: './cards.component.css'
+  styleUrls: ['./cards.component.css']
 })
 export class CardsComponent {
+  todayDate: string;
 
-
+  constructor() {
+    const today = new Date();
+    this.todayDate = today.toISOString().split('T')[0];
+  }
 }

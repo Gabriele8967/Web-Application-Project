@@ -7,10 +7,13 @@
              height="1152" width="2048">
         <div class="card-body">
           <h5 class="card-title">Gestione Prenotazioni</h5>
-          <button routerLink="/fields" class="btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+          <button [routerLink]="['/fields', todayDate]" class="btn">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
         </div>
       </div>
     </div>
+
 
     <div class="col-lg-4 col-md-4 col-sm-12">
       <div class="card mx-auto" style="width: 90%;">
