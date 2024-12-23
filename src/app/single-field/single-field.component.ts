@@ -3,6 +3,7 @@ import {ActivatedRoute, Router, RouterLink} from '@angular/router'; // Import Ro
 import { Field } from '../models/field';
 import { FieldsService } from '../services/fields/fields.service';
 import { CommonModule } from '@angular/common';
+import {Request} from '../models/request';
 
 @Component({
   selector: 'app-single-field',
@@ -30,16 +31,18 @@ export class SingleFieldComponent implements OnInit {
 
 
   // Metodo per eliminare la prenotazione
-  eliminaPrenotazione(campo: any): void {
-    if (campo.isOccupied) {
-      // Chiamata al servizio per eliminare la prenotazione
-      this.service.updateCampoOccupato(campo.id, campo.time, false).subscribe(updatedCampo => {
-        campo.isOccupied = false;
-        campo.idGiocatore1 = null;
-        campo.idGiocatore2 = null;
-        campo.idMaestro = null;
-      });
-    }
+  eliminaPrenotazione(id: number, date: string, time: number): void {
+    this.service.eliminaPrenotazione(id, date, time).subscribe({
+      next: (response: Request) => {
+        alert(response.messaggio);
+        if(response.esito){
+          this.ngOnInit();
+        }
+      },
+      error: (error) => {
+        alert(`Errore nella comunicazione con il backend: ${error.message}`);
+      }
+    })
   }
 
   goToBookingPage(campo: Field): void {

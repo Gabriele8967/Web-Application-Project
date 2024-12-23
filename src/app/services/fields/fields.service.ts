@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Field } from '../../models/field';
-import {Users} from '../../models/users';
+import { Request } from '../../models/request';
 
 @Injectable({
   providedIn: 'root'
@@ -23,12 +23,12 @@ export class FieldsService {
     return this.http.get<Field>(`${this.apiUrl}/${id}`);
   }
 
-    prenotaCampo(id: number, time: number, campo: any, idGiocatore2: number, idMaestro: number | undefined): Observable<any> {
+  prenotaCampo(id: number, time: number, campo: any, idGiocatore2: number, idMaestro: number | undefined): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}/prenota`, campo);
   }
 
-  // Aggiornare stato di occupazione
-  updateCampoOccupato(id: number, time: number, isOccupied: boolean): Observable<any> {
-    return this.http.put<any>(`${this.apiUrl}/update/${id}/${time}`, { isOccupied });
+  // Elimina una prenotazione dal database
+  eliminaPrenotazione(id: number, date: string, orario: number): Observable<Request> {
+    return this.http.get<Request>(`${this.apiUrl}/update/${id}/${date}/${orario}`);
   }
 }

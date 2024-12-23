@@ -28,7 +28,7 @@
                 {{ campo?.idGiocatore2 }}
               </a>
             </p>
-            <button class="btn btn-danger mt-3" (click)="eliminaPrenotazione(campo)">Elimina Prenotazione</button>
+            <button class="btn btn-danger mt-3" (click)="eliminaPrenotazione(campo.id,campo.date,campo.time)">Elimina Prenotazione</button>
           </div>
 
           <!-- Pulsante per prenotare se il campo è libero -->
