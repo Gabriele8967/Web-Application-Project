@@ -14,13 +14,13 @@ export class FieldsService {
   constructor(private http: HttpClient) { }
 
   // Metodo per ottenere tutti i campi
-  getFields(): Observable<Field[]> {
-    return this.http.get<Field[]>(`${this.apiUrl}`);
+  getFields(date: string): Observable<Field[]> {
+    return this.http.get<Field[]>(`${this.apiUrl}/${date}`);
   }
 
   // Metodo per ottenere un campo specifico per ID
-  getFieldById(id: number): Observable<Field> {
-    return this.http.get<Field>(`${this.apiUrl}/${id}`);
+  getFieldById(date: string, id: number): Observable<Field> {
+    return this.http.get<Field>(`${this.apiUrl}/${date}/${id}`);
   }
 
   prenotaCampo(id: number, time: number, campo: any, idGiocatore2: number, idMaestro: number | undefined): Observable<any> {

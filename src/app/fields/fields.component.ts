@@ -21,7 +21,7 @@ export class FieldsComponent implements OnInit {
   constructor(private service: FieldsService, private router: Router) {}
 
   ngOnInit() {
-    this.service.getFields().subscribe((fields: Field[]) => {
+    this.service.getFields("2024-12-23").subscribe((fields: Field[]) => {
       // Filtra i duplicati in base all'ID del campo
       const uniqueFields = fields.filter((campo, index, self) =>
         index === self.findIndex((t) => t.id === campo.id)
