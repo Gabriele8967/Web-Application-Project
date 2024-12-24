@@ -29,8 +29,10 @@ export class SingleFieldComponent implements OnInit {
       this.field = fields;
     });
   }
-
-
+  gestisciPartita(campo: any): void {
+    // Reindirizza alla pagina di prenotazione parziale con i dettagli del campo
+    this.router.navigate([`/fields/${campo.date}/${campo.id}/${campo.time}/partial`]);
+  }
   // Metodo per eliminare la prenotazione
   eliminaPrenotazione(id: number, date: string, time: number): void {
     this.service.eliminaPrenotazione(id, date, time).subscribe({

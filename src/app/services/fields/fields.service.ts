@@ -38,6 +38,20 @@ export class FieldsService {
 
     return this.http.get<Request>(`${this.apiUrl}/prenota`, { params });
   }
+  prenotaLezione(fieldId: number, time: number, date: string, idGiocatore1: number, idMaestro: number): Observable<any> {
+    const body = {
+      fieldId,
+      time,
+      date,
+      idGiocatore1,
+      idMaestro
+    };
+    return this.http.post(`${this.apiUrl}/prenotazione/lezione`, body);
+  }
+  addPlayer2(idCampo: number, date: string, time: number, idGiocatore2: number): Observable<any> {
+    const url = `${this.apiUrl}/prenotazioni/${idCampo}/${date}/${time}/aggiungi-giocatore2`;
+    return this.http.put(url, { idGiocatore2 });
+  }
 
   // Elimina una prenotazione dal database
   eliminaPrenotazione(id: number, date: string, orario: number): Observable<Request> {

@@ -28,7 +28,16 @@
                 {{ campo?.idGiocatore2 }}
               </a>
             </p>
+
+            <!-- Pulsante per eliminare la prenotazione -->
             <button class="btn btn-danger mt-3" (click)="eliminaPrenotazione(campo.id,campo.date,campo.time)">Elimina Prenotazione</button>
+
+            <!-- Pulsante per gestire la partita, solo se Giocatore 2 è 0 o nullo -->
+            <button *ngIf="campo?.idGiocatore2 === 0 || campo?.idGiocatore2 === null"
+                    class="btn btn-warning mt-3"
+                    (click)="gestisciPartita(campo)">
+              Gestisci Partita
+            </button>
           </div>
 
           <!-- Pulsante per prenotare se il campo è libero -->

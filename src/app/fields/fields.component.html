@@ -26,7 +26,7 @@
         <div class="card-body">
           <!-- Pulsante per gestire il campo -->
           <button (click)="gestisciCampo(c.id)"
-                  [ngClass]="isFieldAvailable(c) ? 'btn-success' : 'btn-danger'"
+                  [ngClass]="isFieldAvailable(c, hours) ? 'btn-success' : 'btn-danger'"
                   type="button" class="long-button justify-content-center">
             Gestisci campo
           </button>

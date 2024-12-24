@@ -16,6 +16,9 @@ import {SingleUserComponent} from './single-user/single-user.component';
 import {FieldsComponent} from './fields/fields.component';
 import {SingleFieldComponent} from './single-field/single-field.component';
 import {BookingComponent} from './booking/booking.component';
+import {PartialBookingComponent} from './partial-booking/partial-booking.component';
+import {TotalBookingComponent} from './total-booking/total-booking.component';
+import {LessonBookingComponent} from './lesson-booking/lesson-booking.component';
 
 export const routes: Routes = [
 
@@ -38,7 +41,11 @@ export const routes: Routes = [
   {path: "find-opponent", component: FindOpponentComponent},
   {path: 'users/:id', component: SingleUserComponent },
   {path: 'fields/:date/:id', component: SingleFieldComponent },
-  { path: 'fields/:date/:id/:time', component: BookingComponent }
+  {path: 'fields/:date/:id/:time', component: BookingComponent },
+  {path: 'fields/:date/:id/:time/partial', component: PartialBookingComponent },
+  {path: 'fields/:date/:id/:time/total', component: TotalBookingComponent},
+  { path: 'fields/:date/:id/:time/lesson', component: LessonBookingComponent}
+
 
 
 
