@@ -2,6 +2,7 @@ import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Campo} from "../Model/campo";
+import {Giocatore} from '../Model/giocatore';
 
 @Injectable({
     providedIn: 'root'
@@ -14,5 +15,8 @@ export class CampoService{
 
     getCampi(): Observable<Campo[]> {
         return this.http.get<Campo[]>(this.url + "/campi");
+    }
+    getDatiCampo(idCampo: number): Observable<Campo>{
+    return this.http.get<Campo>(this.url + "/campi/" + idCampo);
     }
 }

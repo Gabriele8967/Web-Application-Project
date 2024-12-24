@@ -1,19 +1,19 @@
-<img src="/assets/image/headerMatch1.jpg" style="width: 100%; height: 400px;">
-<div class="d-flex justify-content-center align-items-center mt-3">
+<img class="mb-3" src="/assets/image/headerMatch1.jpg" style="width: 100%; height: 400px;">
+<div class="d-flex justify-content-center align-items-center mt-3" *ngFor="let m of matchInAttesa">
   <div class="shadow-lg p-5 bg-body-tertiary justify-content-center" style="width: 1150px; border-radius: 15px">
    <div class="vstack">
     <div class="hstack gap-4">
       <img src="/assets/image/icons8-tennis-60.png" style="height: 60px; width: 60px;">
       <div class="vstack gap-2">
         <h2>TENNIS</h2>
-        <p>martedi 24 dic 12:30 - 14:00</p>
+        <p>{{ m.data }} {{ m.orario }}</p>
       </div>
     </div>
      <hr class="my-4" style="border-top: 1px solid black;">
      <div class="hstack">
       <div class="vstack gap-4 align-items-center">
         <label>Tipo di campo</label>
-        <p>Cemento</p>
+        <p>{{ campi[m.campo] }}</p>
       </div>
        <div class="vstack gap-4 align-items-center">
          <label>Livello</label>
@@ -38,8 +38,8 @@
           <div class="hstack">
             <div class="vstack align-items-center">
               <img src="/assets/image/iconaDefault.jpg" style="height: 50px; width: 50px; border-image: round">
-              <p> Mimmo (Tu)</p>
-              <p> lvl - 4</p>
+              <p> {{usernames[m.giocatore1]}}</p>
+              <p> liv - 4</p>
             </div>
             <div class="vr" style="height: 130px;"></div>
             <div class="vstack align-items-center mt-4">
