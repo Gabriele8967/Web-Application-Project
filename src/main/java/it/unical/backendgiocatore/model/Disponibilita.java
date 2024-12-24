@@ -4,7 +4,7 @@ public class Disponibilita {
     private String data;
     private String orario;
     private int campo;
-    private int stato;
+
 
     public Disponibilita(){}
 
@@ -32,11 +32,4 @@ public class Disponibilita {
         this.campo = campo;
     }
 
-    public int getStato() {
-        return stato;
-    }
-
-    public void setStato(int stato) {
-        this.stato = stato;
-    }
 }

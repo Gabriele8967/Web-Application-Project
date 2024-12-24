@@ -40,6 +40,7 @@ public class campoDaoDB implements campoDao {
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             if (rs.next()){
+                campo = new Campo();
                 campo.setId(rs.getInt("id"));
                 campo.setImmagine(rs.getString("immagine"));
                 campo.setSuperficie(rs.getString("superficie"));

@@ -1,13 +1,6 @@
 package it.unical.backendgiocatore.persistence;
-
-import it.unical.backendgiocatore.persistence.dao.abilitaDao;
-import it.unical.backendgiocatore.persistence.dao.campoDao;
-import it.unical.backendgiocatore.persistence.dao.disponibilitaDao;
-import it.unical.backendgiocatore.persistence.dao.giocatoreDao;
-import it.unical.backendgiocatore.persistence.db.abilitaDaoDB;
-import it.unical.backendgiocatore.persistence.db.campoDaoDB;
-import it.unical.backendgiocatore.persistence.db.disponibilitaDaoDB;
-import it.unical.backendgiocatore.persistence.db.giocatoreDaoDB;
+import it.unical.backendgiocatore.persistence.dao.*;
+import it.unical.backendgiocatore.persistence.db.*;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -45,5 +38,6 @@ public class DBManager {
   public abilitaDao getAbilitaDao(){return new abilitaDaoDB(getConnection());}
   public campoDao getCampoDao(){return new campoDaoDB(getConnection());}
   public disponibilitaDao getDisponibilitaDao(){return new disponibilitaDaoDB(getConnection());}
+  public prenotazioniCampoDao getPrenotazioniCampoDao(){return new prenotazioniCampoDaoDB(getConnection());}
 
 }

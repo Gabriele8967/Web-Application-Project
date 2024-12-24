@@ -18,7 +18,7 @@ public class disponibilitaRESTController {
         List<OrariDisponibili> disponibilita = new ArrayList<>();
         LocalDate date = LocalDate.now();
         String dataCorrente = date.toString();
-        List<Integer> orariTotali = Arrays.asList(14, 15, 16, 17, 18, 19);
+        List<Integer> orariTotali = Arrays.asList(9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20);
         for(int i=1; i<11; i++){
             List<Integer> orariPrenotati = DBManager.getInstance().getDisponibilitaDao().orariPrenotati(dataCorrente,i);
             List<Integer> orariLiberi = orariTotali.stream().filter(orario -> !orariPrenotati.contains(orario)).collect(Collectors.toList());
@@ -29,6 +29,7 @@ public class disponibilitaRESTController {
         }
         return disponibilita;
     }
+
 
 
 

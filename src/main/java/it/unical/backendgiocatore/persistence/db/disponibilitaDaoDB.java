@@ -22,7 +22,6 @@ public class disponibilitaDaoDB implements disponibilitaDao {
                 d.setCampo(rs.getInt("campo"));
                 d.setData(rs.getString("data"));
                 d.setOrario(rs.getString("orario"));
-                d.setStato(rs.getInt("stato"));
                 disponibilita.add(d);
             }
         } catch (SQLException e) {
@@ -32,14 +31,15 @@ public class disponibilitaDaoDB implements disponibilitaDao {
     }
 
     @Override
-    public int checkDisponibilita(String orario, String data, int idCampo) {
+    public int checkinAttesa(String orario, String data, int idCampo) {
         int stato = 10;
-        String query = "SELECT stato FROM disponibilita WHERE orario = ? AND data = ? AND campo = ?";
+        String query = "SELECT * FROM prenotazionicampo WHERE orario = ? AND data = ? AND campo = ? AND stato = ?";
         try {
             PreparedStatement ps = conn.prepareStatement(query);
             ps.setString(1, orario);
             ps.setString(2, data);
             ps.setInt(3, idCampo);
+            ps.setInt(4, 1); //stato = 1 significa prenotazione in attesa di match
             ResultSet rs = ps.executeQuery();
             if (rs.next()){
                 stato = rs.getInt("stato");
@@ -71,13 +71,13 @@ public class disponibilitaDaoDB implements disponibilitaDao {
 
     @Override
     public void save(Disponibilita disponibilita) {
-        String query = "INSERT INTO disponibilita (campo, data, orario, stato) VALUES (?, ?, ?, ?)";
+        String query = "INSERT INTO disponibilita (campo, data, orario) VALUES (?, ?, ?)";
         try {
             PreparedStatement ps = conn.prepareStatement(query);
             ps.setInt(1, disponibilita.getCampo());
             ps.setString(2, disponibilita.getData());
             ps.setString(3, disponibilita.getOrario());
-            ps.setInt(4, disponibilita.getStato());
+
             ps.executeUpdate();
         } catch (SQLException e){
             throw new RuntimeException("Errore durante l'aggiunta della disponibilità",e);
@@ -87,12 +87,11 @@ public class disponibilitaDaoDB implements disponibilitaDao {
 
     @Override
     public void delete(Disponibilita disponibilita) {
-        String query = "DELETE FROM disponibilita WHERE campo = ? AND data = ? AND orario = ? AND stato = ?";
+        String query = "DELETE FROM disponibilita WHERE campo = ? AND data = ? AND orario = ?";
         try (PreparedStatement ps = conn.prepareStatement(query)) {
             ps.setInt(1, disponibilita.getCampo());
             ps.setString(2, disponibilita.getData());
             ps.setString(3, disponibilita.getOrario());
-            ps.setInt(4, disponibilita.getStato());
             ps.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException("Errore durante l'eliminazione della disponibilità", e);
