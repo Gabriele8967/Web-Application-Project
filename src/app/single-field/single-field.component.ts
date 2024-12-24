@@ -47,8 +47,6 @@ export class SingleFieldComponent implements OnInit {
   }
 
   goToBookingPage(campo: Field): void {
-    this.router.navigate(['/fields', campo.id, campo.time]); // Naviga alla pagina di prenotazione
+    this.router.navigate(['/fields', this.route.snapshot.paramMap.get('date'), campo.id, campo.time]); // Naviga alla pagina di prenotazione
   }
 }
-
-

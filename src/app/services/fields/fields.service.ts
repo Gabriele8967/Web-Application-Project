@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Field } from '../../models/field';
 import { Request } from '../../models/request';
@@ -23,8 +23,20 @@ export class FieldsService {
     return this.http.get<Field>(`${this.apiUrl}/${date}/${id}`);
   }
 
-  prenotaCampo(id: number, time: number, campo: any, idGiocatore2: number, idMaestro: number | undefined): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/prenota`, campo);
+  prenotaCampo(id: number, time: number, date: string, id_a: number, id_b: number | undefined, tipoprenotazione: number): Observable<any> {
+    if(id_b === undefined) {
+      id_b = 0;
+    }
+
+    const params = new HttpParams()
+      .set('id', id.toString())
+      .set('date', date)
+      .set('time', time.toString())
+      .set('id_a', id_a.toString())
+      .set('tipoprenotazione', tipoprenotazione.toString())
+      .set('id_b', id_b.toString());
+
+    return this.http.get<Request>(`${this.apiUrl}/prenota`, { params });
   }
 
   // Elimina una prenotazione dal database
