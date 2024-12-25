@@ -1,10 +1,8 @@
 package it.unical.backendgiocatore.RESTcontroller;
+import it.unical.backendgiocatore.model.MatchRequest;
 import it.unical.backendgiocatore.model.prenotazioniCampo;
 import it.unical.backendgiocatore.persistence.DBManager;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,7 +20,13 @@ public class matchmakingRESTController {
     @GetMapping("/inAttesa")
     public List<prenotazioniCampo> getInAttesa() {
         List<prenotazioniCampo> inAttesa;
-        inAttesa = DBManager.getInstance().getPrenotazioniCampoDao().findbystato(1);
+        inAttesa = DBManager.getInstance().getPrenotazioniCampoDao().findbystato(2);
         return inAttesa;
+    }
+
+    @PostMapping("/completaMatch")
+    public boolean completaMatch(@RequestBody MatchRequest matchRequest) {
+        System.out.println(matchRequest.getIdGiocatore());
+        return DBManager.getInstance().getPrenotazioniCampoDao().update(matchRequest.getIdPrenotazione(), matchRequest.getIdGiocatore());
     }
 }

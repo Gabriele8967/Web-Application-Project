@@ -27,6 +27,7 @@ public class prenotazioniCampoDaoDB implements prenotazioniCampoDao {
                 prenotazione.setGiocatore1(rs.getInt("giocatore1"));
                 prenotazione.setGiocatore2(rs.getInt("giocatore2"));
                 prenotazione.setData_prenotazione(rs.getString("data_prenotazione"));
+                prenotazione.setOrario_prenotazione(rs.getString("orario_prenotazione"));
                 prenotazione.setStato(rs.getInt("stato"));
                 prenotazioni.add(prenotazione);
             }
@@ -53,6 +54,7 @@ public class prenotazioniCampoDaoDB implements prenotazioniCampoDao {
                 prenotazione.setGiocatore1(rs.getInt("giocatore1"));
                 prenotazione.setGiocatore2(rs.getInt("giocatore2"));
                 prenotazione.setData_prenotazione(rs.getString("data_prenotazione"));
+                prenotazione.setOrario_prenotazione(rs.getString("orario_prenotazione"));
                 prenotazione.setStato(rs.getInt("stato"));
                 prenotazioni.add(prenotazione);
             }
@@ -67,11 +69,11 @@ public class prenotazioniCampoDaoDB implements prenotazioniCampoDao {
 
 
     @Override
-    public boolean update(int st, int gioc2, int i) {
+    public boolean update(int i,int gioc2) {
         String query = "UPDATE prenotazionicampo SET stato = ?, giocatore2 = ? WHERE id = ?";
         try {
             PreparedStatement ps = conn.prepareStatement(query);
-            ps.setInt(1, st);
+            ps.setInt(1, 2);
             ps.setInt(2, gioc2);
             ps.setInt(3, i);
             int rowsUpdated = ps.executeUpdate();

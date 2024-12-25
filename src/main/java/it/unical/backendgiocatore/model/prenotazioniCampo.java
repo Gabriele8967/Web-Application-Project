@@ -8,6 +8,7 @@ public class prenotazioniCampo {
     private int giocatore1;
     private int giocatore2;
     private String data_prenotazione;
+    private String orario_prenotazione;
     private int stato;
     public prenotazioniCampo() {}
 
@@ -73,5 +74,13 @@ public class prenotazioniCampo {
 
     public void setStato(int stato) {
         this.stato = stato;
+    }
+
+    public String getOrario_prenotazione() {
+        return orario_prenotazione;
+    }
+
+    public void setOrario_prenotazione(String orario_prenotazione) {
+        this.orario_prenotazione = orario_prenotazione;
     }
 }
