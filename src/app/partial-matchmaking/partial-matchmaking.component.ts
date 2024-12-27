@@ -1,31 +1,29 @@
-import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { ActivatedRoute, Router } from '@angular/router';
-import { FieldsService } from '../services/fields/fields.service';
-import { Field } from '../models/field';
-import { FormsModule } from '@angular/forms';
+import {Component, OnInit} from '@angular/core';
+import {Field} from '../models/field';
+import {ActivatedRoute, Router} from '@angular/router';
+import {FieldsService} from '../services/fields/fields.service';
+import {CommonModule} from '@angular/common';
+import {FormsModule} from '@angular/forms';
 
 @Component({
-  selector: 'app-total-booking',
-  templateUrl: './total-booking.component.html',
-  styleUrls: ['./total-booking.component.css'],
+  selector: 'app-partial-matchmaking',
+  imports: [CommonModule, FormsModule],
+  templateUrl: './partial-matchmaking.component.html',
   standalone: true,
-  imports: [CommonModule, FormsModule]
+  styleUrl: './partial-matchmaking.component.css'
 })
-export class TotalBookingComponent implements OnInit {
+export class PartialMatchmakingComponent implements OnInit {
   date!: string;
   fieldId!: number;
   time!: number;
   campo!: Field;
   idGiocatore1: number | null = null;
-  idGiocatore2: number | null = null;
 
   constructor(
     private route: ActivatedRoute,
     private service: FieldsService,
-    private router: Router // Aggiungi Router per la navigazione
+    protected router: Router // Aggiungi Router per la navigazione
   ) {}
-
   ngOnInit(): void {
     // Recupera i parametri dalla route
     this.route.params.subscribe(params => {
@@ -40,26 +38,27 @@ export class TotalBookingComponent implements OnInit {
       });
     });
   }
-
-  // Metodo per completare la prenotazione
   prenota(): void {
     console.log('ID Giocatore 1:', this.idGiocatore1);
-    console.log('ID Giocatore 2:', this.idGiocatore2);
 
-    if (!this.idGiocatore1 || !this.idGiocatore2) {
-      alert('Entrambi gli ID dei giocatori sono obbligatori.');
+    if (!this.idGiocatore1) {
+      alert('Inserire ID del giocatore');
       return;
     }
 
-    this.service.prenotaCampo(this.fieldId, this.time, this.date, this.idGiocatore1, this.idGiocatore2, 0).subscribe({
+    this.service.prenotaCampo(this.fieldId, this.time, this.date, this.idGiocatore1, undefined, 0).subscribe({
       next: (response) => {
         alert('Prenotazione completata con successo!');
-        // Reindirizza alla pagina senza l'orario
+        // Naviga alla pagina precedente
         this.router.navigate([`/fields/${this.date}/${this.fieldId}`]);
       },
       error: (error) => {
+        console.error('Errore durante la prenotazione:', error);
         alert('Errore nella prenotazione: ' + error.message);
-      }
+      },
+      complete: () => {
+        console.log('Prenotazione gestita correttamente.');
+      },
     });
   }
 }

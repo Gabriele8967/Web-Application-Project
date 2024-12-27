@@ -19,6 +19,7 @@ import {BookingComponent} from './booking/booking.component';
 import {PartialBookingComponent} from './partial-booking/partial-booking.component';
 import {TotalBookingComponent} from './total-booking/total-booking.component';
 import {LessonBookingComponent} from './lesson-booking/lesson-booking.component';
+import {PartialMatchmakingComponent} from './partial-matchmaking/partial-matchmaking.component';
 
 export const routes: Routes = [
 
@@ -44,7 +45,8 @@ export const routes: Routes = [
   {path: 'fields/:date/:id/:time', component: BookingComponent },
   {path: 'fields/:date/:id/:time/partial', component: PartialBookingComponent },
   {path: 'fields/:date/:id/:time/total', component: TotalBookingComponent},
-  { path: 'fields/:date/:id/:time/lesson', component: LessonBookingComponent}
+  {path: 'fields/:date/:id/:time/lesson', component: LessonBookingComponent},
+  {path: 'fields/:date/:id/:time/partial-matchmaking', component: PartialMatchmakingComponent}
 
 
 

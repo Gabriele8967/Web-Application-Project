@@ -49,7 +49,7 @@ export class BookingComponent implements OnInit {
           this.router.navigate([`/fields/${this.date}/${this.idCampo}/${this.orario}/total`]);
           break;
         case 'partial':
-          this.router.navigate([`/fields/${this.date}/${this.idCampo}/${this.orario}/partial`]);
+          this.router.navigate([`/fields/${this.date}/${this.idCampo}/${this.orario}/partial-matchmaking`]);
           break;
         case 'lesson':
           this.router.navigate([`/fields/${this.date}/${this.idCampo}/${this.orario}/lesson`]);

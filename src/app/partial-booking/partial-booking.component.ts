@@ -53,3 +53,5 @@ export class PartialBookingComponent implements OnInit {
     }
   }
 }
+
+

@@ -5,7 +5,7 @@ export interface Field {
   date: string;
   time: number;
   idGiocatore1?: number;
-  idGiocatore2?: number; //poyrebbe anche essere undefined
+  idGiocatore2?: number; //Potrebbe anche essere undefined
   idMaestro?: number;  // Potrebbe essere undefined
   tipoPrenotazione?: number; //potrebbe anche essere undefined
   tipoSport: string;
