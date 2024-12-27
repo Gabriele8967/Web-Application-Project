@@ -46,7 +46,7 @@ export class PartialMatchmakingComponent implements OnInit {
       return;
     }
 
-    this.service.prenotaCampo(this.fieldId, this.date, this.time, this.idGiocatore1, undefined, 1).subscribe({
+    this.service.prenotaCampo(this.fieldId, this.time, this.date, this.idGiocatore1, undefined, 1).subscribe({
       next: (response) => {
         alert('Prenotazione completata con successo!');
         // Naviga alla pagina precedente
