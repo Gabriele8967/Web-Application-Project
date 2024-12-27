@@ -3,23 +3,41 @@
   <h1>Prenotazioni</h1>
   <hr class="my-4" style="border-top: 1px solid black;">
 
-  <div class="vstack g-3 justify-content-center nav nav-underline">
-    <div class="hstack g-3 mb-4 mt-4">
-      <div id="nav-item" class="d-flex gap-3">
-        <div routerLink="profile/reservations" class="nav-link">
-          <strong>Prenotazioni</strong>
-        </div>
-        <div class="vr mt-2" style="height: 25px;"></div>
-        <div routerLink="/profile/reservation-history" class="nav-link">
-          <strong>Cronologia</strong>
-        </div>
+  <div class="hstack gap-3 mb-5 mt-2 nav nav-underline">
+    <div id="nav-item" class="d-flex gap-3">
+      <div routerLink="/profile/reservations" class="nav-link">
+        <strong>Prossime</strong>
+      </div>
+      <div class="vr mt-2" style="height: 25px;"></div>
+      <div routerLink="/profile/reservation-history" class="nav-link">
+        <strong>Cronologia</strong>
       </div>
     </div>
-
   </div>
 
+
+
+  <div class="row fw-bold text-center border-bottom pb-2 mb-3">
+    <div class="col">Data</div>
+    <div class="col">Orario</div>
+    <div class="col">Campo</div>
+    <div class="col">Avversario</div>
+    <div class="col">Azione</div>
+  </div>
+
+
+  <div class="row text-center align-items-center border-bottom py-2" *ngFor="let p of prenotazioni">
+    <div class="col">{{ p.data }}</div>
+    <div class="col">{{ p.orario }}:00</div>
+    <div class="col">{{ p.campo }}</div>
+    <div class="col">
+      <span *ngIf="p.giocatore2 > 0; else empty">{{ usernames[p.giocatore2] }}</span>
+      <ng-template #empty>-</ng-template>
+    </div>
+    <div class="col">
+      <button (click)="annullaPrenotazione(p.id)" class="btn btn-danger btn-sm">Annulla</button>
+    </div>
+  </div>
+</div>
 </div>
 
-
-
-</div>

@@ -22,9 +22,17 @@ export class MatchmakingService {
         return this.http.get<PrenotazioniCampo[]>(this.url + "/inAttesa");
     }
 
-    completaMatch(matchrequest: MatchRequest): Observable<Boolean>{
+    getPrenotazioniGiocatore(idGiocatore:number): Observable<PrenotazioniCampo[]>{
+      return this.http.get<PrenotazioniCampo[]>(this.url + "/prenotazioni/" + idGiocatore);
+    }
 
-      return this.http.post<Boolean>(this.url + "/completaMatch",matchrequest);
+    completaMatch(matchrequest: MatchRequest): Observable<boolean>{
+
+      return this.http.post<boolean>(this.url + "/completaMatch",matchrequest);
+    }
+
+    annullaPrenotazione(id:number): Observable<boolean>{
+      return this.http.post<boolean>(this.url + "/annullaPrenotazione/" + id, id);
     }
 
 }

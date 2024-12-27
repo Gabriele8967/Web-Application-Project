@@ -1,11 +1,9 @@
 <div class="d-flex justify-content-center align-items-center">
   <div class="shadow-lg p-5 bg-body-tertiary rounded justify-content-center" style="width: 1150px">
-  <h1>Prenotazioni</h1>
-  <hr class="my-4" style="border-top: 1px solid black;">
+    <h1>Prenotazioni</h1>
+    <hr class="my-4" style="border-top: 1px solid black;">
 
-  <div class="vstack g-3 justify-content-center nav nav-underline">
-    <div class="hstack g-3 mb-4 mt-4">
-
+    <div class="hstack gap-3 mb-5 mt-2 nav nav-underline">
       <div id="nav-item" class="d-flex gap-3">
         <div routerLink="/profile/reservations" class="nav-link">
           <strong>Prossime</strong>
@@ -15,14 +13,134 @@
           <strong>Cronologia</strong>
         </div>
       </div>
-
     </div>
-  </div>
 
+
+
+    <div class="row fw-bold text-center border-bottom pb-2 mb-3">
+      <div class="col">Data</div>
+      <div class="col">Orario</div>
+      <div class="col">Campo</div>
+      <div class="col">Avversario</div>
+      <div class="col">Partita</div>
+    </div>
+
+
+    <div class="row text-center align-items-center border-bottom py-2" *ngFor="let p of prenotazioni">
+      <div class="col">{{ p.data }}</div>
+      <div class="col">{{ p.orario }}:00</div>
+      <div class="col">{{ p.campo }}</div>
+      <div class="col">
+        <span *ngIf="p.giocatore2 > 0; else empty">{{ usernames[p.giocatore2] }}</span>
+        <ng-template #empty>-</ng-template>
+      </div>
+      <div class="col">
+        <button class="round-button margin-custom" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          <i class="fas fa-plus"></i>
+        </button>
+      </div>
+    </div>
   </div>
 </div>
 
+<!-- MODALE INSERISCI PARTITA -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Inserisci dati della partita</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="container-fluid">
+
+          <!-- Riga per il risultato -->
+          <div class="row text-center align-items-center mb-4">
+            <div class="col-3">
+              <label class="form-label">Username 1</label>
+            </div>
+            <div class="col-2">
+              <input type="number" id="score1" class="form-control text-center" min="0" max="2" placeholder="0">
+            </div>
+            <div class="col-2">
+              <span>-</span>
+            </div>
+            <div class="col-2">
+              <input type="number" id="score2" class="form-control text-center" min="0" max="2" placeholder="0">
+            </div>
+            <div class="col-3">
+              <label class="form-label">Username 2</label>
+            </div>
+          </div>
+
+          <!-- STATISTICHE -->
+          <div class="row align-items-center mb-3">
+            <div class="col-3">
+              <input type="number" class="form-control" min="0" placeholder="0">
+            </div>
+            <div class="col-6 text-center">
+              <label class="form-label">Ace</label>
+            </div>
+            <div class="col-3">
+              <input type="number" class="form-control" min="0" placeholder="0">
+            </div>
+          </div>
+
+          <div class="row align-items-center mb-3">
+            <div class="col-3">
+              <input type="number" class="form-control" min="0" placeholder="0">
+            </div>
+            <div class="col-6 text-center">
+              <label  class="form-label">Doppi Falli</label>
+            </div>
+            <div class="col-3">
+              <input type="number" class="form-control" min="0" placeholder="0">
+            </div>
+          </div>
+
+          <div class="row align-items-center mb-3">
+            <div class="col-3">
+              <input type="number" class="form-control" min="0" placeholder="0">
+            </div>
+            <div class="col-6 text-center">
+              <label class="form-label">Palle Break salvate</label>
+            </div>
+            <div class="col-3">
+              <input type="number" class="form-control" min="0" placeholder="0">
+            </div>
+          </div>
+
+          <div class="row align-items-center mb-3">
+            <div class="col-3">
+              <input type="number" class="form-control" min="0" placeholder="0">
+            </div>
+            <div class="col-6 text-center">
+              <label class="form-label">Vincenti</label>
+            </div>
+            <div class="col-3">
+              <input type="number" class="form-control" min="0" placeholder="0">
+            </div>
+          </div>
+
+          <div class="row align-items-center mb-3">
+            <div class="col-3">
+              <input type="number" class="form-control" min="0" placeholder="0">
+            </div>
+            <div class="col-6 text-center">
+              <label class="form-label">Errori Non Forzati</label>
+            </div>
+            <div class="col-3">
+              <input type="number" class="form-control" min="0" placeholder="0">
+            </div>
+          </div>
 
 
-
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button (click)="salvaPartita()" type="button" class="btn btn-primary">Salva</button>
+      </div>
+    </div>
+  </div>
+</div>
 

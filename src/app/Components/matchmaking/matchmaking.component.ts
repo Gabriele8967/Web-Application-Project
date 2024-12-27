@@ -69,7 +69,7 @@ getDataFormattata(data:string){
 
   completaMatch(idPrenotazione:number, idGiocatore:number){
     this.matchRequest = {idPrenotazione: idPrenotazione, idGiocatore: idGiocatore};
-    this.match.completaMatch(this.matchRequest);
+    this.match.completaMatch(this.matchRequest).subscribe();
     console.log(this.matchRequest)
   }
 

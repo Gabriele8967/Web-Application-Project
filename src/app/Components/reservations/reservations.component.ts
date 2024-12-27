@@ -1,9 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {RouterLink} from '@angular/router';
-
-import {Giocatore} from '../../Model/giocatore';
 import {GiocatoreService} from '../../Services/giocatore.service';
 import {CommonModule} from '@angular/common';
+import {PrenotazioniCampo} from '../../Model/prenotazioniCampo';
+import {MatchmakingService} from '../../Services/matchmaking.service';
+import {forkJoin} from 'rxjs';
 
 
 @Component({
@@ -20,17 +21,28 @@ import {CommonModule} from '@angular/common';
 
 export class ReservationsComponent implements OnInit {
 
-  giocatori: Giocatore[] = [];
+  prenotazioni: PrenotazioniCampo[] = [];
+  usernames: { [key: number]: string } = {};
 
-  constructor(public giocatoriService: GiocatoreService) {}
 
+  constructor(private prenotazioniService: MatchmakingService, public giocatoreService: GiocatoreService) {}
 
   ngOnInit(): void {
+    this.prenotazioniService.getPrenotazioniGiocatore(1).subscribe(res=>{
+      this.prenotazioni = res;
 
-    this.giocatoriService.getGiocatori().subscribe(data=>{
-      this.giocatori = data;
+      res.forEach(prenotazione => {
+        forkJoin({
+          giocatore: this.giocatoreService.getDatiGiocatore(prenotazione.giocatore2),
+        }).subscribe(({ giocatore }) => {
+          this.usernames[prenotazione.giocatore2] = giocatore.username;
+        });
+      });
     })
-
-
   }
+
+  annullaPrenotazione(idPrenotazione: number){
+    this.prenotazioniService.annullaPrenotazione(idPrenotazione).subscribe();
+  }
+
 }
