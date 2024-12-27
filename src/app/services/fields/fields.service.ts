@@ -23,7 +23,7 @@ export class FieldsService {
     return this.http.get<Field>(`${this.apiUrl}/${date}/${id}`);
   }
 
-  prenotaCampo(id: number, time: number, date: string, id_a: number, id_b: number | undefined, tipoprenotazione: number): Observable<any> {
+  prenotaCampo(id: number, time: number, date: string, id_a: number, id_b: number | undefined, tipoprenotazione: number): Observable<Request> {
     if (id_b === undefined) {
       id_b = 0;
     }
@@ -53,6 +53,7 @@ export class FieldsService {
     };
     return this.http.post(`${this.apiUrl}/prenotazione/lezione`, body);
   }
+
   addPlayer2(idCampo: number, date: string, time: number, idGiocatore2: number): Observable<any> {
     const url = `${this.apiUrl}/prenotazioni/${idCampo}/${date}/${time}/aggiungi-giocatore2`;
     return this.http.put(url, { idGiocatore2 });

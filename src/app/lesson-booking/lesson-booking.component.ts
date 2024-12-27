@@ -48,10 +48,12 @@ export class LessonBookingComponent implements OnInit {
     }
 
     // Invia i dati per la prenotazione
-    this.service.prenotaLezione(this.fieldId, this.time, this.date, this.idGiocatore1, this.idMaestro).subscribe({
+    this.service.prenotaCampo(this.fieldId, this.time, this.date, this.idGiocatore1, this.idMaestro, 3).subscribe({
       next: (response) => {
-        alert('Prenotazione Lezione completata con successo!');
-        this.router.navigate(['/']);  // Reindirizza alla home o alla pagina desiderata
+        alert(response.messaggio);
+        if(response.esito) {
+          this.router.navigate([`/fields/${this.date}/${this.fieldId}`]);  // Reindirizza alla home o alla pagina desiderata
+        }
       },
       error: (error) => {
         alert('Errore nella prenotazione della lezione: ' + error.message);

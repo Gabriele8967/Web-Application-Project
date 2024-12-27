@@ -43,10 +43,12 @@ export class PartialBookingComponent implements OnInit {
   aggiornaPrenotazione(): void {
     // Logica per aggiornare la prenotazione, ad esempio aggiungere il secondo giocatore
     if (this.idGiocatore2) {
-      this.service.addPlayer2(this.fieldId, this.date, this.time, this.idGiocatore2).subscribe(response => {
-        alert('Giocatore 2 aggiunto con successo!');
-      }, error => {
-        alert('Errore nell\'aggiungere il Giocatore 2');
+      this.service.prenotaCampo(this.fieldId, this.time, this.date, this.idGiocatore2,undefined,2).subscribe({
+        next: (response) => {
+        alert(response.messaggio);
+        }, error: (error)=> {
+          alert('Errore nell\'aggiungere il Giocatore 2');
+        }
       });
     }
   }
