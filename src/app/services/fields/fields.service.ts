@@ -24,7 +24,7 @@ export class FieldsService {
   }
 
   prenotaCampo(id: number, time: number, date: string, id_a: number, id_b: number | undefined, tipoprenotazione: number): Observable<any> {
-    if(id_b === undefined) {
+    if (id_b === undefined) {
       id_b = 0;
     }
 
@@ -33,11 +33,16 @@ export class FieldsService {
       .set('date', date)
       .set('time', time.toString())
       .set('id_a', id_a.toString())
-      .set('tipoprenotazione', tipoprenotazione.toString())
-      .set('id_b', id_b.toString());
+      .set('id_b', id_b.toString())
+      .set('tipoprenotazione', tipoprenotazione.toString());
+
+    console.log('Parametri inviati al backend:', params.toString());
 
     return this.http.get<Request>(`${this.apiUrl}/prenota`, { params });
   }
+
+
+
   prenotaLezione(fieldId: number, time: number, date: string, idGiocatore1: number, idMaestro: number): Observable<any> {
     const body = {
       fieldId,

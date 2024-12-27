@@ -14,6 +14,7 @@ import {Request} from '../models/request';
 })
 export class SingleFieldComponent implements OnInit {
   field: Field[] = [];
+  dateFromUrl: string = '';
 
   constructor(
     private service: FieldsService,
@@ -24,31 +25,45 @@ export class SingleFieldComponent implements OnInit {
   ngOnInit() {
     const id = +this.route.snapshot.paramMap.get('id')!;
     const date = this.route.snapshot.paramMap.get('date');
+    if (!id || !date) {
+      alert('Parametri mancanti nell\'URL');
+      this.router.navigate(['/']); // Torna alla home o ad una pagina di fallback
+      return;
+    }
+    this.dateFromUrl = date;
     // @ts-ignore
     this.service.getFieldById(date, id).subscribe((fields: Field[]) => {
       this.field = fields;
     });
   }
-  gestisciPartita(campo: any): void {
-    // Reindirizza alla pagina di prenotazione parziale con i dettagli del campo
-    this.router.navigate([`/fields/${campo.date}/${campo.id}/${campo.time}/partial`]);
+  formatDate(date: string): string {
+    const [year, month, day] = date.split('-');
+    return `${day}/${month}/${year}`;
   }
-  // Metodo per eliminare la prenotazione
+
+  gestisciPartita(campo: Field): void {
+    this.router.navigate(
+      [`/fields/${campo.date}/${campo.id}/${campo.time}/partial`],
+      { state: { campo } }
+    );
+  }
+
   eliminaPrenotazione(id: number, date: string, time: number): void {
     this.service.eliminaPrenotazione(id, date, time).subscribe({
       next: (response: Request) => {
         alert(response.messaggio);
-        if(response.esito){
+        if (response.esito) {
           this.ngOnInit();
         }
       },
       error: (error) => {
         alert(`Errore nella comunicazione con il backend: ${error.message}`);
       }
-    })
+    });
   }
 
   goToBookingPage(campo: Field): void {
-    this.router.navigate(['/fields', this.route.snapshot.paramMap.get('date'), campo.id, campo.time]); // Naviga alla pagina di prenotazione
+    const date = this.route.snapshot.paramMap.get('date');
+    this.router.navigate(['/fields', date, campo.id, campo.time]);
   }
 }

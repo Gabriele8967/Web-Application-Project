@@ -1,9 +1,32 @@
+<!-- Filtri per ordinamento -->
+<div class="mb-3">
+  <label class="form-label">Ordina per:</label>
+  <div class="d-flex">
+    <!-- Nome -->
+    <button class="btn btn-light" (click)="sortUsers('nome')">
+      {{ getButtonText('nome') }}
+    </button>
+    <!-- Cognome -->
+    <button class="btn btn-light" (click)="sortUsers('cognome')">
+      {{ getButtonText('cognome') }}
+    </button>
+    <!-- Livello -->
+    <button class="btn btn-light" (click)="sortUsers('livello')">
+      {{ getButtonText('livello') }}
+    </button>
+    <!-- Bannato -->
+    <button class="btn btn-light" (click)="sortUsers('bannato')">
+      {{ getButtonText('bannato') }}
+    </button>
+  </div>
+</div>
+
+<!-- Visualizzazione utenti -->
 <div class="container overflow-hidden text-center mt-5">
-  <div class="row gy-2" *ngIf="users.length > 0; else noUsers">
-    <div class="col-12" *ngFor="let c of users">
+  <div class="row gy-2" *ngIf="sortedUsers.length > 0; else noUsers">
+    <div class="col-12" *ngFor="let c of sortedUsers">
       <div class="user-card d-flex align-items-center justify-content-between px-3 py-2 border rounded"
            [ngClass]="{'bg-danger text-white': c.bannato}">
-        <!-- Testo -->
         <div class="card-text flex-grow-1 text-start">
           <h6 class="mb-1">{{ c.id }} - {{ c.nome }} {{ c.cognome }}</h6>
           <p class="mb-0"><strong>Username:</strong> {{ c.username }}</p>
@@ -12,7 +35,6 @@
           <p class="mb-0"><strong>Livello:</strong> {{ c.livello }}</p>
         </div>
 
-        <!-- Immagine -->
         <div class="card-image ms-3">
           <img [src]="c.immagineProfilo || 'default-image.jpg'"
                alt="Immagine di {{ c.nome }} {{ c.cognome }}"
@@ -20,7 +42,6 @@
                style="width: 70px; height: 70px; object-fit: cover;">
         </div>
 
-        <!-- Pulsante Gestione -->
         <div class="ms-3">
           <button class="btn btn-primary" (click)="gestisciUtente(c.id)">
             Gestisci
