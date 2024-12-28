@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import {NgOptimizedImage} from '@angular/common';
-import {SidebarComponent} from '../sidebar/sidebar.component';
 import {RouterLink} from '@angular/router';
 import {CardsComponent} from '../cards/cards.component';
 import {NavbarButtonsComponent} from '../navbar-buttons/navbar-buttons.component';

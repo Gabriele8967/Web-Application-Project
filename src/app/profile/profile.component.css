@@ -1,3 +1,92 @@
-.nav-link {
-  color: #616161;
+/* Stile generale per il contenitore */
+div {
+  margin: 20px auto;
+  max-width: 600px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
+
+/* Titolo */
+h2 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Paragrafi */
+p {
+  font-size: 16px;
+  color: #555;
+  margin: 8px 0;
+}
+
+/* Etichette del form */
+label {
+  font-weight: bold;
+  color: #333;
+}
+
+/* Campi di input */
+input.form-control {
+  font-size: 16px;
+  padding: 8px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Bottone principale */
+button.btn {
+  font-size: 16px;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* Bottone modifica */
+button.btn-primary {
+  background-color: #007bff;
+  color: white;
+}
+
+button.btn-primary:hover {
+  background-color: #0056b3;
+}
+
+/* Bottone salva */
+button.btn-success {
+  background-color: #28a745;
+  color: white;
+}
+
+button.btn-success:hover {
+  background-color: #218838;
+}
+
+/* Bottone annulla */
+button.btn-secondary {
+  background-color: #6c757d;
+  color: white;
+}
+
+button.btn-secondary:hover {
+  background-color: #5a6268;
+}
+
+/* Ombreggiatura per il contenitore del form */
+form {
+  margin-top: 10px;
+}
+
+/* Pulsanti allineati orizzontalmente */
+button {
+  margin-right: 10px;
+}
+
+/* Stile per messaggi di caricamento

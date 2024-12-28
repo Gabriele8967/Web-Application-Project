@@ -1,11 +1,39 @@
-<div class="shadow-lg p-3 mb-5 mt-3 bg-body-tertiary rounded nav nav-underline justify-content-center">
-<div class="hstack gap-3 justify-content-center" style="cursor: pointer">
-  <div routerLink="/profile/set-dati" class="nav-link p-2">Il mio profilo</div>
-  <div routerLink="/profile/reservations" class="nav-link p-2">Le mie prenotazioni</div>
-  <div routerLink="/profile/match-history" class="nav-link p-2">Le mie partite</div>
-  <div routerLink="/profile/abilities" class="nav-link p-2">Le mie abilità di gioco</div>
-  <div routerLink="/profile/progress-graph" class="nav-link p-2">I miei progressi</div>
-</div>
-</div>
-<router-outlet></router-outlet>
+<div *ngIf="profile; else loading">
+  <h2>Profilo</h2>
 
+  <!-- Modalità di visualizzazione -->
+  <div *ngIf="!isEditing">
+    <p><strong>Nome:</strong> {{ profile.nome }}</p>
+    <p><strong>Cognome:</strong> {{ profile.cognome }}</p>
+    <p><strong>Email:</strong> {{ profile.email }}</p>
+    <button class="btn btn-primary" (click)="editProfile()">Modifica</button>
+  </div>
+
+  <!-- Modalità di modifica -->
+  <div *ngIf="isEditing">
+    <form>
+      <div class="mb-3">
+        <label for="nome" class="form-label">Nome</label>
+        <input id="nome" [(ngModel)]="profile.nome" class="form-control" />
+      </div>
+      <div class="mb-3">
+        <label for="cognome" class="form-label">Cognome</label>
+        <input id="cognome" [(ngModel)]="profile.cognome" class="form-control" />
+      </div>
+      <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input id="email" [(ngModel)]="profile.email" class="form-control" />
+      </div>
+      <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input id="password" [(ngModel)]="profile.password" class="form-control" type="password" />
+      </div>
+      <button type="button" class="btn btn-success me-2" (click)="saveProfile()">Salva</button>
+      <button type="button" class="btn btn-secondary" (click)="cancelEdit()">Annulla</button>
+    </form>
+  </div>
+</div>
+
+<ng-template #loading>
+  <p>Caricamento del profilo...</p>
+</ng-template>
