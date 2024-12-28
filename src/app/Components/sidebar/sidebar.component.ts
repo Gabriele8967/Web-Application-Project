@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {RouterLink} from '@angular/router';
+import {Router, RouterLink} from '@angular/router';
 import {GiocatoreService} from '../../Services/giocatore.service';
 import {NgOptimizedImage} from '@angular/common';
+import {LoginService} from '../../Services/login.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -16,17 +17,20 @@ import {NgOptimizedImage} from '@angular/common';
 export class SidebarComponent implements OnInit{
   imgProfilo: string = "";
   nomeUtente: string = "";
-  constructor(public datiGiocatore: GiocatoreService) {}
+  constructor(private router: Router,public datiGiocatore: GiocatoreService, private loginService: LoginService) {}
 
   ngOnInit(): void {
-        this.datiGiocatore.getDatiGiocatore(1).subscribe(res=>{
-          this.imgProfilo = res.immagine_profilo;
-          this.nomeUtente = res.username;
-          console.log(res);
-        })
-    }
+    this.datiGiocatore.getDatiGiocatore(1).subscribe(res=>{
+      this.imgProfilo = res.immagine_profilo;
+      this.nomeUtente = res.username;
+      console.log(res);
+    })
+  }
 
 
-
+  logout(){
+    this.loginService.logout();
+    this.router.navigate(['/login']);
+  }
 
 }

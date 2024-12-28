@@ -1,0 +1,43 @@
+<body style="flex-direction: column">
+<div class="login-container " >
+  <h2 class="dati">Per accedere inserisci i dati del tuo account EasyMatch</h2>
+  <form class="login" #simpleForm="ngForm" (ngSubmit)="getValues(simpleForm.value)" >
+    <!-- Campo email -->
+    <label for="password">Indirizzo email</label>
+    <input
+      type="email"
+      [(ngModel)]="userObject.email"
+      id="email"
+      name="email"
+      #emailInput
+      placeholder="Inserisci il tuo indirizzo email"
+      required
+    />
+
+    <!-- Campo password -->
+    <label for="password">Password</label>
+    <input
+      type="password"
+      [(ngModel)]="userObject.password"
+      id="password"
+      name="password"
+      #passwordInput
+      placeholder="Inserisci la tua password"
+      required
+    />
+
+    <!-- Bottone di invio -->
+    <button type="submit" (click)="onAccedi()" routerLink="/home" >Login</button>
+
+    <!-- Link secondari -->
+    <a class="forgot-password" href="/forgot-password">Hai dimenticato la password?</a>
+    <a class="forgot-password" href="/registra">Registrati</a>
+  </form>
+
+  <!-- Bottoni secondari per altri accessi -->
+</div>
+<div class="secondary-buttons">
+  <button type="button" (click)="accediAdmin()">Accedi come Admin</button>
+  <button type="button" (click)="accediMaestro()">Accedi come Maestro</button>
+</div>
+</body>

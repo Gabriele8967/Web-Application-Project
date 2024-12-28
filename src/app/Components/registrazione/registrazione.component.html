@@ -1,0 +1,27 @@
+<body>
+<div class="registration-container">
+  <h2 class="text-center mb-4">Registrazione Giocatore</h2>
+  <form id="registrationForm" #simpleForm="ngForm" (ngSubmit)="onRegistra()">
+
+    <label for="nome" class="form-label">Nome</label>
+    <input type="text" [(ngModel)]="userObject.nome" class="form-control" id="nome" name="nome" required>
+
+    <label for="cognome" class="form-label">Cognome</label>
+    <input type="text" [(ngModel)]="userObject.cognome" class="form-control" id="cognome" name="cognome" required>
+
+    <label for="email" class="form-label">Email</label>
+    <input type="email" [(ngModel)]="userObject.email" class="form-control" id="email" name="email" required>
+
+    <label for="password" class="form-label">Password</label>
+    <input type="password" [(ngModel)]="userObject.password" class="form-control" id="password" name="password" required>
+
+    <label for="username" class="form-label">Username</label>
+    <input type="text" [(ngModel)]="userObject.username" class="form-control" id="username" name="username" required>
+
+    <label for="telefono" class="form-label">Telefono</label>
+    <input type="text" [(ngModel)]="userObject.telefono" class="form-control" id="telefono">
+
+    <button type="submit" class="btn btn-primary" style="margin: 15px">Registrati</button>
+  </form>
+</div>
+</body>
