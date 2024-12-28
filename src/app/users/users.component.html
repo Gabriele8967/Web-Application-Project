@@ -1,7 +1,7 @@
 <!-- Filtri per ordinamento -->
 <div class="mb-3">
   <label class="form-label">Ordina per:</label>
-  <div class="d-flex">
+  <div class="d-flex flex-wrap gap-2">
     <!-- Nome -->
     <button class="btn btn-light" (click)="sortUsers('nome')">
       {{ getButtonText('nome') }}
@@ -18,30 +18,37 @@
     <button class="btn btn-light" (click)="sortUsers('bannato')">
       {{ getButtonText('bannato') }}
     </button>
+    <!-- ID -->
+    <button class="btn btn-light" (click)="sortUsers('id')">
+      {{ getButtonText('id') }}
+    </button>
   </div>
 </div>
 
 <!-- Visualizzazione utenti -->
 <div class="container overflow-hidden text-center mt-5">
-  <div class="row gy-2" *ngIf="sortedUsers.length > 0; else noUsers">
+  <div class="row gy-3" *ngIf="sortedUsers.length > 0; else noUsers">
     <div class="col-12" *ngFor="let c of sortedUsers">
       <div class="user-card d-flex align-items-center justify-content-between px-3 py-2 border rounded"
            [ngClass]="{'bg-danger text-white': c.bannato}">
+        <!-- Testo utente -->
         <div class="card-text flex-grow-1 text-start">
           <h6 class="mb-1">{{ c.id }} - {{ c.nome }} {{ c.cognome }}</h6>
           <p class="mb-0"><strong>Username:</strong> {{ c.username }}</p>
           <p class="mb-0"><strong>Email:</strong> {{ c.email }}</p>
-          <p class="mb-0"><strong>Id:</strong> {{ c.id }}</p>
+          <p class="mb-0"><strong>ID:</strong> {{ c.id }}</p>
           <p class="mb-0"><strong>Livello:</strong> {{ c.livello }}</p>
         </div>
 
+        <!-- Immagine profilo -->
         <div class="card-image ms-3">
-          <img [src]="c.immagineProfilo || 'default-image.jpg'"
+          <img [src]="c.immagineProfilo || 'assets/images/default-image.jpg'"
                alt="Immagine di {{ c.nome }} {{ c.cognome }}"
                class="rounded-circle"
                style="width: 70px; height: 70px; object-fit: cover;">
         </div>
 
+        <!-- Pulsante "Gestisci" -->
         <div class="ms-3">
           <button class="btn btn-primary" (click)="gestisciUtente(c.id)">
             Gestisci
@@ -50,9 +57,11 @@
       </div>
     </div>
   </div>
+
+  <!-- Messaggio di "nessun utente" -->
   <ng-template #noUsers>
     <div class="col-12">
-      <p>Nessun utente trovato.</p>
+      <p class="text-muted">Nessun utente trovato.</p>
     </div>
   </ng-template>
 </div>

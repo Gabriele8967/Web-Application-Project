@@ -3,13 +3,14 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FieldsService } from '../services/fields/fields.service';
 import { Field } from '../models/field';
 import { FormsModule } from '@angular/forms';
+import {DatePipe} from "@angular/common";
 
 @Component({
   selector: 'app-lesson-booking',
   templateUrl: './lesson-booking.component.html',
   styleUrls: ['./lesson-booking.component.css'],
   standalone: true,
-  imports: [FormsModule] // Importiamo FormsModule per ngModel
+    imports: [FormsModule, DatePipe] // Importiamo FormsModule per ngModel
 })
 export class LessonBookingComponent implements OnInit {
   date!: string;

@@ -4,24 +4,38 @@
   <!-- Modulo di prenotazione -->
   <div class="card">
     <div class="card-body">
-      <h5 class="card-title">Campo {{ campo?.id }} - Orario: {{ time }}:00</h5>
 
-      <!-- Mostra la data non modificabile -->
-      <div class="mb-3">
-        <label for="date" class="form-label">Data</label>
-        <input type="text" id="date" class="form-control" [value]="date" disabled>
-      </div>
+      <!-- Dettagli Campo, Data e Orario -->
+      <p><strong>Campo:</strong> {{ campo?.id }}</p>
+      <p><strong>Data:</strong> {{ date | date: 'dd/MM/yyyy' }}</p>
+      <p><strong>Orario:</strong> {{ time }}:00</p>
 
       <!-- ID Giocatore 1 -->
       <div class="mb-3">
         <label for="idGiocatore1" class="form-label">ID Giocatore 1</label>
-        <input type="number" id="idGiocatore1" class="form-control" [(ngModel)]="idGiocatore1" name="idGiocatore1" placeholder="Inserisci l'ID Giocatore 1" required>
+        <input
+          type="number"
+          id="idGiocatore1"
+          class="form-control"
+          [(ngModel)]="idGiocatore1"
+          name="idGiocatore1"
+          placeholder="Inserisci l'ID Giocatore 1"
+          required
+        />
       </div>
 
       <!-- ID Maestro -->
       <div class="mb-3">
         <label for="idMaestro" class="form-label">ID Maestro</label>
-        <input type="number" id="idMaestro" class="form-control" [(ngModel)]="idMaestro" name="idMaestro" placeholder="Inserisci l'ID Maestro" required>
+        <input
+          type="number"
+          id="idMaestro"
+          class="form-control"
+          [(ngModel)]="idMaestro"
+          name="idMaestro"
+          placeholder="Inserisci l'ID Maestro"
+          required
+        />
       </div>
 
       <!-- Pulsante di prenotazione -->
