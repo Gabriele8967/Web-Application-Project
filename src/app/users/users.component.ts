@@ -5,7 +5,6 @@ import { Users } from '../models/users';
 import { Router, RouterLink } from '@angular/router';
 
 interface ClickState {
-  count: number;
   direction: 'asc' | 'desc' | '';
 }
 
@@ -21,11 +20,11 @@ export class UsersComponent implements OnInit {
   sortedUsers: Users[] = [];
 
   clickState: Record<string, ClickState> = {
-    nome: { count: 0, direction: '' },
-    cognome: { count: 0, direction: '' },
-    livello: { count: 0, direction: '' },
-    bannato: { count: 0, direction: '' },
-    id: { count: 0, direction: '' }, // Aggiunto stato per ID
+    nome: { direction: '' },
+    cognome: { direction: '' },
+    livello: { direction: '' },
+    bannato: { direction: '' },
+    id: { direction: '' }, // Stato per ID
   };
 
   constructor(private service: UsersService, private router: Router) {}
@@ -46,20 +45,23 @@ export class UsersComponent implements OnInit {
     const state = this.clickState[criterio];
     let text = criterio.charAt(0).toUpperCase() + criterio.slice(1);
 
-    if (state.count > 0) {
-      text += ` ${state.direction === 'asc' ? '↑' : '↓'}`;
+    if (state.direction) {
+      text += state.direction === 'asc' ? ' ↑' : ' ↓';
     }
     return text;
   }
 
   sortUsers(criterio: string): void {
-    this.resetOtherButtons(criterio);
-
     const state = this.clickState[criterio];
-    state.count = (state.count + 1) % 3;
 
-    state.direction = state.count === 1 ? 'asc' : state.count === 2 ? 'desc' : '';
+    // Se il criterio selezionato non è già quello corrente, resetta l'ordinamento
+    if (state.direction === '' || state.direction === 'desc') {
+      state.direction = 'asc';  // Cambia in crescente
+    } else {
+      state.direction = 'desc';  // Cambia in decrescente
+    }
 
+    this.resetOtherButtons(criterio);
     this.sortDirection(criterio, state.direction);
   }
 
@@ -92,8 +94,7 @@ export class UsersComponent implements OnInit {
   resetOtherButtons(criterio: string): void {
     Object.keys(this.clickState).forEach((key) => {
       if (key !== criterio) {
-        this.clickState[key].count = 0;
-        this.clickState[key].direction = '';
+        this.clickState[key].direction = ''; // Resetta la direzione di altri pulsanti
       }
     });
   }

@@ -1,25 +1,25 @@
 <!-- Filtri per ordinamento -->
-<div class="mb-3">
+<div class="mb-3 filter-container">
   <label class="form-label">Ordina per:</label>
-  <div class="d-flex flex-wrap gap-2">
+  <div class="d-flex gap-2">
     <!-- Nome -->
-    <button class="btn btn-light" (click)="sortUsers('nome')">
+    <button class="btn filter-btn" (click)="sortUsers('nome')">
       {{ getButtonText('nome') }}
     </button>
     <!-- Cognome -->
-    <button class="btn btn-light" (click)="sortUsers('cognome')">
+    <button class="btn filter-btn" (click)="sortUsers('cognome')">
       {{ getButtonText('cognome') }}
     </button>
     <!-- Livello -->
-    <button class="btn btn-light" (click)="sortUsers('livello')">
+    <button class="btn filter-btn" (click)="sortUsers('livello')">
       {{ getButtonText('livello') }}
     </button>
     <!-- Bannato -->
-    <button class="btn btn-light" (click)="sortUsers('bannato')">
+    <button class="btn filter-btn" (click)="sortUsers('bannato')">
       {{ getButtonText('bannato') }}
     </button>
     <!-- ID -->
-    <button class="btn btn-light" (click)="sortUsers('id')">
+    <button class="btn filter-btn" (click)="sortUsers('id')">
       {{ getButtonText('id') }}
     </button>
   </div>

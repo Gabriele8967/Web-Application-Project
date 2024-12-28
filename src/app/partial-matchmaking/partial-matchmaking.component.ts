@@ -1,16 +1,16 @@
-import {Component, OnInit} from '@angular/core';
-import {Field} from '../models/field';
-import {ActivatedRoute, Router} from '@angular/router';
-import {FieldsService} from '../services/fields/fields.service';
-import {CommonModule} from '@angular/common';
-import {FormsModule} from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { Field } from '../models/field';
+import { ActivatedRoute, Router } from '@angular/router';
+import { FieldsService } from '../services/fields/fields.service';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-partial-matchmaking',
   imports: [CommonModule, FormsModule],
   templateUrl: './partial-matchmaking.component.html',
   standalone: true,
-  styleUrl: './partial-matchmaking.component.css'
+  styleUrls: ['./partial-matchmaking.component.css']
 })
 export class PartialMatchmakingComponent implements OnInit {
   date!: string;
@@ -24,6 +24,7 @@ export class PartialMatchmakingComponent implements OnInit {
     private service: FieldsService,
     protected router: Router // Aggiungi Router per la navigazione
   ) {}
+
   ngOnInit(): void {
     // Recupera i parametri dalla route
     this.route.params.subscribe(params => {
@@ -38,6 +39,7 @@ export class PartialMatchmakingComponent implements OnInit {
       });
     });
   }
+
   prenota(): void {
     console.log('ID Giocatore 1:', this.idGiocatore1);
 
@@ -46,10 +48,11 @@ export class PartialMatchmakingComponent implements OnInit {
       return;
     }
 
+    // Effettua la prenotazione
     this.service.prenotaCampo(this.fieldId, this.time, this.date, this.idGiocatore1, undefined, 1).subscribe({
       next: (response) => {
         alert('Prenotazione completata con successo!');
-        // Naviga alla pagina precedente
+        // Naviga alla pagina precedente (senza parametro time, perché non è necessario nella pagina precedente)
         this.router.navigate([`/fields/${this.date}/${this.fieldId}`]);
       },
       error: (error) => {
@@ -62,6 +65,3 @@ export class PartialMatchmakingComponent implements OnInit {
     });
   }
 }
-
-
-

@@ -3,14 +3,14 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FieldsService } from '../services/fields/fields.service';
 import { Field } from '../models/field';
 import { FormsModule } from '@angular/forms';
-import {DatePipe} from "@angular/common";
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-lesson-booking',
   templateUrl: './lesson-booking.component.html',
   styleUrls: ['./lesson-booking.component.css'],
   standalone: true,
-    imports: [FormsModule, DatePipe] // Importiamo FormsModule per ngModel
+  imports: [FormsModule, DatePipe] // Importiamo FormsModule per ngModel
 })
 export class LessonBookingComponent implements OnInit {
   date!: string;
@@ -52,8 +52,9 @@ export class LessonBookingComponent implements OnInit {
     this.service.prenotaCampo(this.fieldId, this.time, this.date, this.idGiocatore1, this.idMaestro, 3).subscribe({
       next: (response) => {
         alert(response.messaggio);
-        if(response.esito) {
-          this.router.navigate([`/fields/${this.date}/${this.fieldId}`]);  // Reindirizza alla home o alla pagina desiderata
+        if (response.esito) {
+          // Naviga alla pagina del campo selezionato dopo la prenotazione
+          this.router.navigate([`/fields/${this.date}/${this.fieldId}`]);
         }
       },
       error: (error) => {

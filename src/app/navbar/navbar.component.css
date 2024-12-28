@@ -1,47 +1,13 @@
-/* Rimuovi lo sfondo dai pulsanti e lascia solo l'icona */
-.navbar-nav .nav-item .btn {
-  background: none; /* Rimuove lo sfondo del pulsante */
-  border: none; /* Rimuove il bordo del pulsante */
-  padding: 0; /* Rimuove il padding per fare spazio solo all'icona */
-  color: white; /* Colore di base delle icone (bianco) */
-  display: flex;
-  align-items: center; /* Centra verticalmente l'icona */
-}
-
-/* Icona del profilo */
-.navbar-nav .nav-item .btn-profile i {
-  font-size: 1.5rem; /* Imposta la dimensione dell'icona */
-  color: white; /* Colore di base bianco */
-  transition: color 0.3s ease; /* Transizione dolce per il colore */
-}
-
-/* Icona del logout */
-.navbar-nav .nav-item .btn-logout i {
-  font-size: 1.5rem; /* Imposta la dimensione dell'icona */
-  color: white; /* Colore di base bianco */
-  transition: color 0.3s ease; /* Transizione dolce per il colore */
-}
-
-/* Hover sulle icone */
-.navbar-nav .nav-item .btn-profile:hover i {
-  color: yellow; /* Colore giallo per l'icona del profilo quando si passa sopra */
-}
-
-/* Hover sulla icona del logout (rosso) */
-.navbar-nav .nav-item .btn-logout:hover i {
-  color: red; /* Colore rosso per l'icona del logout quando si passa sopra */
-}
-
 /* Navbar personalizzata */
 .navbar-custom {
   background-color: #020940; /* Colore di sfondo personalizzato */
   color: white; /* Colore del testo */
 }
 
-/* Posizionamento dell'icona Profilo a sinistra */
+/* Contenitore flessibile per logo e icona profilo */
 .d-flex {
   display: flex;
-  align-items: center; /* Allinea l'icona e il logo al centro verticalmente */
+  align-items: center; /* Allinea l'icona e il logo verticalmente */
 }
 
 /* Spazio tra l'icona del profilo e il logo */
@@ -52,4 +18,37 @@
 /* Posizionamento del logout a destra */
 .ms-auto {
   margin-left: auto; /* Spinge il logout a destra */
+}
+
+/* Stile per l'icona del profilo */
+.btn-profile i {
+  font-size: 1rem; /* Dimensione dell'icona */
+  color: white; /* Colore predefinito giallo */
+  transition: color 0.3s ease; /* Transizione per un effetto fluido */
+}
+
+/* Hover sull'icona del profilo */
+.btn-profile:hover i {
+  color: greenyellow; /* Cambia colore a bianco quando si passa sopra */
+}
+
+/* Stile per l'icona del logout */
+.btn-logout i {
+  font-size: 1.5rem; /* Dimensione dell'icona */
+  color: white; /* Colore predefinito bianco */
+  transition: color 0.3s ease; /* Transizione per un effetto fluido */
+}
+
+/* Hover sull'icona del logout */
+.btn-logout:hover i {
+  color: red; /* Cambia colore a rosso quando si passa sopra */
+}
+
+/* Stile globale per rimuovere sfondi e bordi dai pulsanti */
+button.btn {
+  background: none; /* Nessuno sfondo */
+  border: none; /* Nessun bordo */
+  padding: 0; /* Nessun padding */
+  display: flex;
+  align-items: center; /* Centra il contenuto verticalmente */
 }
