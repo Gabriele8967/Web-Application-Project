@@ -89,4 +89,12 @@ button {
   margin-right: 10px;
 }
 
-/* Stile per messaggi di caricamento
+/* Stile per messaggi di caricamento */
+p {
+  text-align: center;
+}
+
+p.loading {
+  font-style: italic;
+  color: #888;
+}
