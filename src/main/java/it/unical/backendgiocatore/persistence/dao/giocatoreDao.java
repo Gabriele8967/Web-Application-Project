@@ -12,4 +12,7 @@ public interface giocatoreDao {
   public List<Giocatore> findByLevel(int level);
   public boolean save(Giocatore giocatore);
   public boolean delete(Giocatore giocatore);
+  Giocatore findByEmail(String email);
+  boolean inserisciGiocatore(Giocatore giocatore);
+
 }
