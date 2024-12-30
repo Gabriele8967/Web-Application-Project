@@ -51,7 +51,7 @@ export class PartialMatchmakingComponent implements OnInit {
     // Effettua la prenotazione
     this.service.prenotaCampo(this.fieldId, this.time, this.date, this.idGiocatore1, undefined, 1).subscribe({
       next: (response) => {
-        alert('Prenotazione completata con successo!');
+        alert(response.messaggio);
         // Naviga alla pagina precedente (senza parametro time, perché non è necessario nella pagina precedente)
         this.router.navigate([`/fields/${this.date}/${this.fieldId}`]);
       },
