@@ -1,6 +1,7 @@
 package it.unical.backendgiocatore.persistence.db;
 import it.unical.backendgiocatore.model.Giocatore;
 import it.unical.backendgiocatore.persistence.dao.giocatoreDao;
+import it.unical.backendgiocatore.util.PasswordCrypt;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -8,6 +9,7 @@ import java.util.List;
 
 public class giocatoreDaoDB implements giocatoreDao {
   private final Connection conn;
+  PasswordCrypt p = new PasswordCrypt();
   public giocatoreDaoDB(Connection connection) {
     this.conn = connection;
   }
@@ -129,7 +131,7 @@ public class giocatoreDaoDB implements giocatoreDao {
       ps.setString(1, giocatore.getNome());
       ps.setString(2, giocatore.getCognome());
       ps.setString(3, giocatore.getEmail());
-      ps.setString(4, giocatore.getPassword());
+      ps.setString(4, p.encode(giocatore.getPassword()));
       ps.setString(5, giocatore.getUsername());
       ps.setInt(6, giocatore.getLivello());
       ps.setString(7, giocatore.getTelefono());

@@ -1,6 +1,7 @@
 package it.unical.backendgiocatore.RESTcontroller;
 import it.unical.backendgiocatore.model.Giocatore;
 import it.unical.backendgiocatore.persistence.DBManager;
+import it.unical.backendgiocatore.util.PasswordCrypt;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,6 +12,8 @@ import java.util.List;
 @RequestMapping("/api")
 
 public class giocatoreRESTController {
+
+  PasswordCrypt p = new PasswordCrypt();
 
   @GetMapping("/giocatori")
   public List<Giocatore> getGiocatori(){
@@ -35,7 +38,7 @@ public class giocatoreRESTController {
 
     Giocatore giocatore = DBManager.getInstance().getGiocatoreDao().findByEmail(email);
 
-    if (giocatore != null && giocatore.getPassword().equals(password)) {
+    if (giocatore != null && p.matches(password,giocatore.getPassword())) {
       System.out.println("Login riuscito per: " + email);
       return ResponseEntity.ok(giocatore);
 
