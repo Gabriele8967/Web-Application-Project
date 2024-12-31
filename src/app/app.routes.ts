@@ -17,11 +17,13 @@ import { MatchmakingComponent } from './Components/matchmaking/matchmaking.compo
 import { LoginComponent } from './Components/login/login.component';
 import { RegistrazioneComponent } from './Components/registrazione/registrazione.component';
 import {AuthGuard} from './Services/authGuard';
+import {ForgotPasswordComponent} from './Components/forgot-password/forgot-password.component';
 
 export const routes: Routes = [
   { path: "", component: LoginComponent },
   { path: "login", component: LoginComponent },
   { path: "registra", component: RegistrazioneComponent },
+  { path: "recupera", component: ForgotPasswordComponent },
   { path: "home", component: HomeComponent, canActivate: [AuthGuard]},
   { path: "profile", component: ProfileComponent,canActivate: [AuthGuard], children: [
       { path: "set-dati", component: SetDatiComponent },

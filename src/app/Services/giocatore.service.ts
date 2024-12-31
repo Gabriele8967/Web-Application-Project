@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Giocatore} from '../Model/giocatore';
 import {Abilita} from '../Model/abilita';
@@ -21,5 +21,10 @@ export class GiocatoreService {
   getDatiGiocatore(idGiocatore: number): Observable<Giocatore>{
     return this.http.get<Giocatore>(this.url + "/giocatori/" + idGiocatore);
   }
+  recuperaPass(email: string): Observable<any> {
+    return this.http.post(this.url+'/recupero', email, { responseType: 'text' }  );
+
+  }
+
 
 }

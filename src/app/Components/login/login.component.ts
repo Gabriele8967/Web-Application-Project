@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormGroup, FormControl, Validators, FormsModule, FormBuilder} from '@angular/forms';
 import {Router, RouterLink} from '@angular/router';
 import {LoginService} from '../../Services/login.service';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -12,6 +13,11 @@ import {LoginService} from '../../Services/login.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
+
+  emailTo: string = '';
+  subject: string = '';
+  message: string = '';
+  responseMessage: string = '';
 
   Stato: number = 0; // 0 = Iniziale, 1 = Accesso
 
@@ -67,4 +73,6 @@ accediAdmin() {
 
   //  console.warn(val)
   }
+
+
 }

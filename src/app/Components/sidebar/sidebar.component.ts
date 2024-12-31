@@ -23,7 +23,7 @@ export class SidebarComponent implements OnInit{
     this.datiGiocatore.getDatiGiocatore(1).subscribe(res=>{
       this.imgProfilo = res.immagine_profilo;
       this.nomeUtente = res.username;
-      console.log(res);
+     // console.log(res);
     })
   }
 
