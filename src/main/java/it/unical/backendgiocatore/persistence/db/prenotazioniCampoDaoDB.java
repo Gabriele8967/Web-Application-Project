@@ -65,66 +65,33 @@ public class prenotazioniCampoDaoDB implements prenotazioniCampoDao {
         return prenotazioni;
     }
 
-    @Override
-    public List<prenotazioniCampo> findbyGiocatore(int idGiocatore) {
-        List<prenotazioniCampo> prenotazioni = new ArrayList<>();
-        String query = "SELECT * FROM prenotazionicampo WHERE (giocatore1 = ? OR giocatore2 = ?) AND stato = ?";
-        try {
-            PreparedStatement ps = conn.prepareStatement(query);
-            ps.setInt(1, idGiocatore);
-            ps.setInt(2, idGiocatore);
-            ps.setInt(3,2);
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                prenotazioniCampo prenotazione = new prenotazioniCampo();
-                prenotazione.setId(rs.getInt("id"));
-                prenotazione.setData(rs.getString("data"));
-                prenotazione.setOrario(rs.getString("orario"));
-                prenotazione.setCampo(rs.getInt("campo"));
-                prenotazione.setGiocatore1(rs.getInt("giocatore1"));
-                prenotazione.setGiocatore2(rs.getInt("giocatore2"));
-                prenotazione.setData_prenotazione(rs.getString("data_prenotazione"));
-                prenotazione.setOrario_prenotazione(rs.getString("orario_prenotazione"));
-                prenotazione.setStato(rs.getInt("stato"));
-                prenotazioni.add(prenotazione);
-            }
 
-        } catch (SQLException e) {
-            throw new RuntimeException("Errore durante il recupero delle prenotazioni per giocatore:" + idGiocatore, e);
-        }
-        return prenotazioni;
-    }
 
 
     @Override
     public boolean update(int i,int gioc2) {
-        boolean success = false;
         String query = "UPDATE prenotazionicampo SET stato = ?, giocatore2 = ? WHERE id = ?";
         try {
             PreparedStatement ps = conn.prepareStatement(query);
             ps.setInt(1, 2);
             ps.setInt(2, gioc2);
             ps.setInt(3, i);
-            ps.executeUpdate();
-            success = true;
+            int rowsUpdated = ps.executeUpdate();
+            return rowsUpdated > 0;
         } catch (SQLException e) {
             throw new RuntimeException("Errore durante il completamento del match", e);
         }
-        return success;
     }
 
 
     @Override
-    public boolean delete(int i) {
-        boolean success = false;
+    public void delete(int i) {
         String query = "DELETE FROM prenotazionicampo WHERE id = ?";
         try (PreparedStatement ps = conn.prepareStatement(query)) {
             ps.setInt(1, i);
             ps.executeUpdate();
-            success = true;
         } catch (SQLException e) {
             throw new RuntimeException("Errore durante l'eliminazione della prenotazione", e);
         }
-        return success;
     }
 }

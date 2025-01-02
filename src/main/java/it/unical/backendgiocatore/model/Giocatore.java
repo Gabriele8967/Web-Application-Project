@@ -2,6 +2,7 @@ package it.unical.backendgiocatore.model;
 
 public class Giocatore {
   private int id;
+  private String otp;
   private String nome;
   private String cognome;
   private String email;
@@ -53,6 +54,7 @@ public class Giocatore {
     this.telefono = telefono;
   }
 
+
   public String getPassword() {
     return password;
   }
@@ -60,6 +62,14 @@ public class Giocatore {
   public void setPassword(String password) {
     this.password = password;
   }
+
+
+  public String getOtp() {return otp;}
+
+  public void setOtp(String otp) {
+    this.otp = otp;
+  }
+
 
   public String getUsername() {
     return username;

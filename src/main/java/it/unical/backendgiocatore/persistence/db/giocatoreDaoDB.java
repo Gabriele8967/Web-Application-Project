@@ -1,8 +1,11 @@
 package it.unical.backendgiocatore.persistence.db;
 import it.unical.backendgiocatore.model.Giocatore;
+import it.unical.backendgiocatore.persistence.DBManager;
 import it.unical.backendgiocatore.persistence.dao.giocatoreDao;
 import it.unical.backendgiocatore.util.PasswordCrypt;
+import it.unical.backendgiocatore.services.emailService;
 
+import java.security.SecureRandom;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,6 +13,8 @@ import java.util.List;
 public class giocatoreDaoDB implements giocatoreDao {
   private final Connection conn;
   PasswordCrypt p = new PasswordCrypt();
+  emailService EmailService = new emailService();
+
   public giocatoreDaoDB(Connection connection) {
     this.conn = connection;
   }
@@ -23,7 +28,7 @@ public class giocatoreDaoDB implements giocatoreDao {
       Statement st = conn.createStatement();
       ResultSet rs = st.executeQuery(query);
 
-      while (rs.next()){
+      while (rs.next()) {
         Giocatore giocatore = new Giocatore();
         giocatore.setId(rs.getInt("id"));
         giocatore.setNome(rs.getString("nome"));
@@ -89,6 +94,7 @@ public class giocatoreDaoDB implements giocatoreDao {
 
     return false;
   }
+
   @Override
   public Giocatore findByEmail(String email) {
     Giocatore giocatore = null;
@@ -108,6 +114,7 @@ public class giocatoreDaoDB implements giocatoreDao {
           giocatore.setCognome(rs.getString("cognome"));
           giocatore.setEmail(rs.getString("email"));
           giocatore.setPassword(rs.getString("password"));
+          giocatore.setOtp(rs.getString("password"));
           giocatore.setUsername(rs.getString("username"));
           giocatore.setLivello(rs.getInt("livello"));
           giocatore.setTelefono(rs.getString("telefono"));
@@ -119,6 +126,29 @@ public class giocatoreDaoDB implements giocatoreDao {
     }
 
     return giocatore;
+  }
+
+  @Override
+  public Integer findIdByEmail(String email) {
+    Integer id = null;  // Inizializziamo l'ID a null
+    String query = "SELECT id FROM giocatore WHERE email = ?";
+
+    try (PreparedStatement ps = conn.prepareStatement(query)) {
+      // Imposta il parametro email nella query
+      ps.setString(1, email);
+
+      // Esegui la query
+      try (ResultSet rs = ps.executeQuery()) {
+        if (rs.next()) {
+          // Recupera l'ID del giocatore
+          id = rs.getInt("id");
+        }
+      }
+    } catch (SQLException e) {
+      System.err.println("Errore durante l'esecuzione della query: " + e.getMessage());
+    }
+
+    return id;  // Restituisce solo l'ID
   }
 
   @Override
@@ -148,6 +178,78 @@ public class giocatoreDaoDB implements giocatoreDao {
 
     return risultato;
   }
+
+  @Override
+  public boolean riceviOTP(String email,String newOtp) {
+    boolean success = false;  // Variabile per determinare se l'operazione è riuscita
+    String updateQuery = "UPDATE giocatore SET otp = ?, otp_expiry = NOW() + INTERVAL '10 minutes' WHERE email = ?";
+
+    try {
+      // Recupera il giocatore dal database usando l'email
+      Giocatore giocatore = DBManager.getInstance().getGiocatoreDao().findByEmail(email);
+
+      if (giocatore == null) {
+        // Se il giocatore non esiste, ritorna false
+        System.err.println("Giocatore non trovato per l'email: " + email);
+        return false;
+      }
+
+
+
+      String nuovaOTP = newOtp;
+
+      // Esegui l'aggiornamento della password nel database
+      try (PreparedStatement ps = conn.prepareStatement(updateQuery)) {
+        ps.setString(1, nuovaOTP);
+        ps.setString(2, email);
+
+        int rowsUpdated = ps.executeUpdate();  // Esegui la query di aggiornamento
+
+        if (rowsUpdated > 0) {
+
+          success = true;
+          System.out.println("OTP aggiornata con successo per: " + email);
+        } else {
+          System.err.println("Errore nell'aggiornamento della OTP per: " + email);
+        }
+      }
+    } catch (SQLException e) {
+      System.err.println("Errore durante l'aggiornamento della OTP: " + e.getMessage());
+    }
+
+    return success;
+  }
+
+  @Override
+  public boolean verificaOtp(String email, String otp) {
+    boolean isOtpCorrect = false;
+    String query = "SELECT otp FROM giocatore WHERE email = ?";
+
+    try (PreparedStatement ps = conn.prepareStatement(query)) {
+      ps.setString(1, email);  // Imposta l'email nella query
+
+      try (ResultSet rs = ps.executeQuery()) {
+        if (rs.next()) {
+          String otpFromDb = rs.getString("otp");  // Recupera l'OTP memorizzato nel database
+
+          // Confronta l'OTP ricevuto con quello memorizzato nel database
+          if (otp.equals(otpFromDb)) {
+            isOtpCorrect = true;  // L'OTP è corretto
+          } else {
+            System.err.println("OTP errata per l'email: " + email);
+            System.err.println("OTP from DB: " + otpFromDb);
+            System.err.println("OTP fornita: " + otp);
+          }
+        } else {
+          System.err.println("Nessun giocatore trovato con l'email: " + email);
+        }
+      }
+    } catch (SQLException e) {
+      System.err.println("Errore durante la verifica dell'OTP: " + e.getMessage());
+    }
+
+    return isOtpCorrect;  }
+
 
 
 }

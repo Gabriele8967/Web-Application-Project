@@ -1,4 +1,4 @@
-package it.unical.backendgiocatore;
+package it.unical.backendgiocatore.services;
 
 import it.unical.backendgiocatore.model.prenotazioniCampo;
 import it.unical.backendgiocatore.persistence.DBManager;

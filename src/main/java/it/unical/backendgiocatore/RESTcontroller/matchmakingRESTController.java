@@ -29,16 +29,4 @@ public class matchmakingRESTController {
         System.out.println(matchRequest.getIdGiocatore());
         return DBManager.getInstance().getPrenotazioniCampoDao().update(matchRequest.getIdPrenotazione(), matchRequest.getIdGiocatore());
     }
-
-    @GetMapping("/prenotazioni/{idGiocatore}")
-    public List<prenotazioniCampo> prenotazioniGiocatore(@PathVariable int idGiocatore) {
-        List<prenotazioniCampo> p;
-        p = DBManager.getInstance().getPrenotazioniCampoDao().findbyGiocatore(idGiocatore);
-        return p;
-    }
-
-    @PostMapping("/annullaPrenotazione/{idPrenotazione}")
-    public boolean completaMatch(@PathVariable int idPrenotazione) {
-        return DBManager.getInstance().getPrenotazioniCampoDao().delete(idPrenotazione);
-    }
 }

@@ -19,9 +19,7 @@ public class Abilita {
         this.giocatore = giocatore;
     }
 
-    public int getDritto() {
-        return dritto;
-    }
+    public int getDritto() {return dritto;}
 
     public void setDritto(int dritto) {
         this.dritto = dritto;

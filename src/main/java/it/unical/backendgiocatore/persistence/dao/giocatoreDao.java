@@ -13,6 +13,10 @@ public interface giocatoreDao {
   public boolean save(Giocatore giocatore);
   public boolean delete(Giocatore giocatore);
   Giocatore findByEmail(String email);
+  Integer findIdByEmail(String email);
   boolean inserisciGiocatore(Giocatore giocatore);
+  boolean riceviOTP(String email,String otp);
+
+  boolean verificaOtp(String email, String otp);
 
 }
