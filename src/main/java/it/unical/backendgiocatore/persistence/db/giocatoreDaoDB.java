@@ -249,7 +249,121 @@ public class giocatoreDaoDB implements giocatoreDao {
     }
 
     return isOtpCorrect;  }
+  @Override
+  public boolean aggiornaPassword(String email, String password) {
+    String query = "UPDATE giocatore SET password = ? WHERE email = ?";
+    boolean risultato = false;
+
+    try (PreparedStatement ps = conn.prepareStatement(query)) {
+      // Codifica la password prima di salvarla nel database
+      String passwordCodificata = p.encode(password);
+
+      // Imposta i parametri nella query
+      ps.setString(1, passwordCodificata);
+      ps.setString(2, email);
+
+      // Esegui l'operazione di aggiornamento
+      int rowsAffected = ps.executeUpdate();
+      if (rowsAffected > 0) {
+        risultato = true; // Aggiornamento riuscito
+        System.out.println("Password aggiornata con successo per: " + email);
+      } else {
+        System.err.println("Nessun giocatore trovato con l'email: " + email);
+      }
+    } catch (SQLException e) {
+      System.err.println("Errore durante l'aggiornamento della password: " + e.getMessage());
+    }
+
+    return risultato;
+  }
+
+  @Override
+  public boolean aggiornaEmail(String oldEmail, String newEmail) {
+    String query = "UPDATE giocatore SET email = ? WHERE email = ?";
+    boolean risultato = false;
+    System.out.println("Old email: " + oldEmail);
+    System.out.println("New email: " + newEmail);
+
+    try (PreparedStatement ps = conn.prepareStatement(query)) {
+      // Codifica la password prima di salvarla nel database
 
 
+      // Imposta i parametri nella query
+      ps.setString(1, newEmail);
+      ps.setString(2, oldEmail);
+
+      // Esegui l'operazione di aggiornamento
+      int rowsAffected = ps.executeUpdate();
+      if (rowsAffected > 0) {
+        risultato = true; // Aggiornamento riuscito
+        System.out.println("Email aggiornata con successo per: " + oldEmail);
+      } else {
+        System.err.println("Nessun giocatore trovato con l'email: " + oldEmail);
+      }
+    } catch (SQLException e) {
+      System.err.println("Errore durante l'aggiornamento della email: " + e.getMessage());
+    }
+
+    return risultato;
+  }
+
+  @Override
+  public boolean aggiornaUsername(String email, String username) {
+    String query = "UPDATE giocatore SET username = ? WHERE email = ?";
+    boolean risultato = false;
+
+
+    try (PreparedStatement ps = conn.prepareStatement(query)) {
+      // Codifica la password prima di salvarla nel database
+
+
+      // Imposta i parametri nella query
+      ps.setString(1, username);
+      ps.setString(2, email);
+
+      // Esegui l'operazione di aggiornamento
+      int rowsAffected = ps.executeUpdate();
+      if (rowsAffected > 0) {
+        risultato = true; // Aggiornamento riuscito
+        System.out.println("Username aggiornato con successo per: " + email);
+      } else {
+        System.err.println("Nessun giocatore trovato con l'email: " + email);
+      }
+    } catch (SQLException e) {
+      System.err.println("Errore durante l'aggiornamento della email: " + e.getMessage());
+    }
+
+    return risultato;
+  }
+
+  @Override
+  public boolean aggiornaNumero(String email, String telefono) {
+    String query = "UPDATE giocatore SET telefono = ? WHERE email = ?";
+    boolean risultato = false;
+
+
+    try (PreparedStatement ps = conn.prepareStatement(query)) {
+      // Codifica la password prima di salvarla nel database
+
+
+      // Imposta i parametri nella query
+      ps.setString(1, telefono);
+      ps.setString(2, email);
+
+
+      // Esegui l'operazione di aggiornamento
+      int rowsAffected = ps.executeUpdate();
+      if (rowsAffected > 0) {
+        risultato = true; // Aggiornamento riuscito
+        System.out.println("Numero di telefono aggiornato con successo per: " + email);
+      } else {
+        System.err.println("Nessun giocatore trovato con l'email: " + email);
+      }
+    } catch (SQLException e) {
+      System.err.println("Errore durante l'aggiornamento del numero di telefono: " + e.getMessage());
+    }
+
+    return risultato;
+  }
 
 }

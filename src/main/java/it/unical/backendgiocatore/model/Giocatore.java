@@ -46,6 +46,7 @@ public class Giocatore {
     this.email = email;
   }
 
+
   public String getTelefono() {
     return telefono;
   }

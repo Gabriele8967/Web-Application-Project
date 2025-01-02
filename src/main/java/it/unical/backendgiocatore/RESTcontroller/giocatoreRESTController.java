@@ -3,6 +3,7 @@ package it.unical.backendgiocatore.RESTcontroller;
 import it.unical.backendgiocatore.model.Giocatore;
 import it.unical.backendgiocatore.persistence.DBManager;
 import it.unical.backendgiocatore.services.emailService; // Cambia il nome della classe in maiuscolo, seguendo la convenzione Java
+import it.unical.backendgiocatore.services.emailUpdateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -166,5 +167,82 @@ public class giocatoreRESTController {
       return ResponseEntity.status(401).body("Email o OTP errati");
     }
   }
+  @PostMapping("/updatePassword")
+  public ResponseEntity<?> updatePassword(@RequestBody Giocatore passwordUpdate) {
+    String email = passwordUpdate.getEmail();
+    String password = passwordUpdate.getPassword();
+
+    System.out.println("Aggiornamento password richiesto per: " + email);
+
+    Giocatore giocatoreEsistente = DBManager.getInstance().getGiocatoreDao().findByEmail(email);
+
+    if (giocatoreEsistente == null) {
+      System.out.println("Registrazione fallita: il giocatore richiesto non esiste.");
+      return ResponseEntity.status(409).body("Giocatore non esistente");
+    }
+
+    boolean aggiornata = DBManager.getInstance().getGiocatoreDao().aggiornaPassword(email,password);
+
+    if (aggiornata) {
+      System.out.println("Password aggiornata per: " + email);
+      return ResponseEntity.status(201).body("Password aggiornata con successo");
+    } else {
+      System.out.println("Errore durante l'aggiornamento della Password.");
+      return ResponseEntity.status(500).body("Errore durante l'aggiornamento della Password");
+    }
+  }
+
+
+  @PostMapping("/updateEmail")
+  public ResponseEntity<?> updateEmail(@RequestBody emailUpdateService emailUp) {
+
+    emailUp.getOldEmail();
+    emailUp.getOldEmail();
+    System.out.println("Aggiornamento email richiesto per: " + emailUp.getOldEmail());
+
+    Giocatore giocatoreEsistente = DBManager.getInstance().getGiocatoreDao().findByEmail(emailUp.getOldEmail());
+
+    if (giocatoreEsistente == null) {
+      System.out.println("Registrazione fallita: il giocatore richiesto non esiste.");
+      return ResponseEntity.status(409).body("Giocatore non esistente");
+    }
+
+    boolean aggiornata = DBManager.getInstance().getGiocatoreDao().aggiornaEmail(emailUp.getOldEmail(),emailUp.getNewEmail());
+
+    if (aggiornata) {
+      System.out.println("Email aggiornata per: " + emailUp.getOldEmail()+" Nuova Email"+emailUp.getNewEmail());
+      return ResponseEntity.status(201).body("Email aggiornata con successo");
+    } else {
+      System.out.println("Errore durante l'aggiornamento della Email.");
+      return ResponseEntity.status(500).body("Errore durante l'aggiornamento della Email");
+    }
+  }
+
+
+  @PostMapping("/updateUsername")
+  public ResponseEntity<?> updateUsername(@RequestBody Giocatore userUpdate) {
+
+    userUpdate.getEmail();
+    userUpdate.getUsername();
+    System.out.println("Aggiornamento username richiesto per: " +  userUpdate.getEmail());
+
+    Giocatore giocatoreEsistente = DBManager.getInstance().getGiocatoreDao().findByEmail( userUpdate.getEmail());
+
+    if (giocatoreEsistente == null) {
+      System.out.println("Registrazione fallita: il giocatore richiesto non esiste.");
+      return ResponseEntity.status(409).body("Giocatore non esistente");
+    }
+
+    boolean aggiornata = DBManager.getInstance().getGiocatoreDao().aggiornaUsername( userUpdate.getEmail(),  userUpdate.getUsername());
+
+    if (aggiornata) {
+      System.out.println("Username aggiornata per: " +userUpdate.getEmail()+" Nuovo Username"+ userUpdate.getUsername());
+      return ResponseEntity.status(201).body("Username aggiornato con successo");
+    } else {
+      System.out.println("Errore durante l'aggiornamento dello Username.");
+      return ResponseEntity.status(500).body("Errore durante l'aggiornamento dello Username");
+    }
+  }
+
 
 }
