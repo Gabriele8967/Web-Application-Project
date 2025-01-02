@@ -18,11 +18,13 @@ import { LoginComponent } from './Components/login/login.component';
 import { RegistrazioneComponent } from './Components/registrazione/registrazione.component';
 import {AuthGuard} from './Services/authGuard';
 import {ForgotPasswordComponent} from './Components/forgot-password/forgot-password.component';
+import {OtpRequestComponent} from './Components/otp-request/otp-request.component';
 
 export const routes: Routes = [
   { path: "", component: LoginComponent },
   { path: "login", component: LoginComponent },
   { path: "registra", component: RegistrazioneComponent },
+  { path: "otp", component: OtpRequestComponent },
   { path: "recupera", component: ForgotPasswordComponent },
   { path: "home", component: HomeComponent, canActivate: [AuthGuard]},
   { path: "profile", component: ProfileComponent,canActivate: [AuthGuard], children: [

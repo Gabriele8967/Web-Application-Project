@@ -1,0 +1,23 @@
+<body>
+<div>
+  <h1 class="accedi">Recupera la tua Password</h1>
+  <h2 class="dati">Inserisci la tua email per ricevere una OTP</h2>
+
+  <form class="login" id="recuperoForm">
+    <label>Email</label>
+    <input type="email" id="email" [(ngModel)]="userObject.email"  name="email" placeholder="Inserisci la tua email" required>
+
+    <label>Email</label>
+    <input type="text" id="otpCode" [(ngModel)]="userObject.otpCode"  name="otpCode" placeholder="Inserisci la tua OTP" required>
+
+    <button type="submit" (click)="verifica()">Invia</button>
+
+    <div class="forgot-password">
+      <a href="/login">Annulla</a>
+    </div>
+  </form>
+
+
+</div>
+
+</body>

@@ -25,6 +25,16 @@ export class GiocatoreService {
     return this.http.post(this.url+'/recupero', email, { responseType: 'text' }  );
 
   }
+  sendOtp(email: string): Observable<any> {
+    return this.http.post(this.url+'/sendOtp',  email ,{ responseType: 'text' });
+  }
 
+  verifyOtp(email: string, otp: string): Observable<any> {
+    return this.http.post(this.url+'/verifyOtp', { email, otp },{ responseType: 'text' });
+  }
+
+  resetPassword(email: string, password: string): Observable<any> {
+    return this.http.post(`${this.url}/resetPassword`, { email, password });
+  }
 
 }

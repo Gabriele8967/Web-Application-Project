@@ -23,13 +23,14 @@ export class ForgotPasswordComponent {
     console.log(this.userObject.email)
     // Verifica se l'email è valida prima di inviare la richiesta
     if (this.userObject.email) {
-      this.giocatoreService.recuperaPass(this.userObject.email).subscribe(
+      this.giocatoreService.sendOtp(this.userObject.email).subscribe(
         response => {
-          alert('Password aggiornata con successo!');
+          alert('OTP inviata con successo!');
+          this.router.navigate(['/otp'])
           console.log(response); // Gestire la risposta
         },
         error => {
-          alert ('Errore durante il recupero della password.');
+          alert ('Errore durante l\'invio della OTP.');
           console.error(error); // Gestire l'errore
         }
       );
