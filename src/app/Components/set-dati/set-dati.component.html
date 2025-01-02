@@ -1,49 +1,46 @@
 <div class="d-flex justify-content-center align-items-center">
-<div class="shadow-lg p-5 bg-body-tertiary rounded justify-content-center" style="width: 1150px">
-<h1>Profilo</h1>
-<hr class="my-4" style="border-top: 1px solid black;">
+  <div class="shadow-lg p-5 bg-body-tertiary rounded justify-content-center" style="width: 1150px">
+    <h1>Profilo</h1>
+    <hr class="my-4" style="border-top: 1px solid black;">
 
-  <div class="vstack g-3">
-    <div class="hstack gap-3 mb-2 mt-2 nav nav-underline">
-
-      <div id="nav-item" class="d-flex gap-3">
-        <div routerLink="/profile/set-dati" class="nav-link">
-          <strong>Modifica Dati</strong>
-        </div>
-        <div class="vr mt-2" style="height: 25px;"></div>
-        <div routerLink="/profile/set-password" class="nav-link">
-          <strong>Modifica Password</strong>
+    <div class="vstack g-3 justify-content-center nav nav-underline">
+      <div class="hstack gap-3 mb-2 mt-2">
+        <div id="nav-item" class="d-flex gap-3">
+          <div routerLink="/profile/set-dati" class="nav-link">
+            <strong>Modifica Dati</strong>
+          </div>
+          <div class="vr mt-2" style="height: 25px;"></div>
+          <div routerLink="/profile/set-password" class="nav-link">
+            <strong>Modifica Password</strong>
+          </div>
         </div>
       </div>
 
+      <form class="login" id="recuperoForm">
+
+        <!-- Username Field -->
+        <label>Username</label>
+        <div class="input-container">
+          <input type="text" id="newUsername" [(ngModel)]="userObject.newUsername" name="newUsername" placeholder="Inserisci il tuo nuovo Username" required>
+          <button type="button" (click)="onSaveUsername()">Invia</button>
+        </div>
+
+        <!-- Email Field -->
+        <label>Email</label>
+        <div class="input-container">
+          <input type="email" id="newEmail" [(ngModel)]="userObject.newEmail" name="newEmail" placeholder="Inserisci la tua nuova Email" required>
+          <button type="button" (click)="onSaveEmail()">Invia</button>
+        </div>
+
+        <!-- Phone Number Field -->
+        <label>Numero di telefono</label>
+        <div class="input-container">
+          <input type="text" id="newNumber" [(ngModel)]="userObject.newNumber" name="newNumber" placeholder="Inserisci il tuo nuovo numero" required>
+          <button type="button" (click)="onSaveNumber()">Invia</button>
+        </div>
+
+      </form>
+
     </div>
-
-
-  <div class="formContainer  justify-content-center">
-    <form (ngSubmit)="send()" [formGroup]="form">
-    <div class="my-3">
-    <label for="inputNomeUtente" class="form-label"> Nome utente</label>
-    <input class="form-control" type="text" id="inputNomeUtente" placeholder="Scrivi il tuo nome utente" formControlName="user">
-    </div>
-
-    <div class="my-3">
-    <label for="inputEmail" class="form-label">Email</label>
-    <input class="form-control" type="email" id="inputEmail" placeholder="Scrivi la tua email" formControlName="email">
-    </div>
-
-    <div class="my-3">
-    <label for="inputPhoneNumber" class="form-label">Numero di telefono</label>
-    <input class="form-control" type="number" id="inputPhoneNumber" placeholder="Scrivi il tuo numero di telefono" formControlName="phone">
-    </div>
-
-      <div class="hstack g-3 mb-4 mt-4">
-        <button type="submit" class="long-button justify-content-center">Salva modifiche</button>
-      </div>
-    </form>
   </div>
-
-
-</div>
-</div>
-
 </div>

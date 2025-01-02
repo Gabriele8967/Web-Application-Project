@@ -15,21 +15,20 @@ import {LoginService} from '../../Services/login.service';
 })
 export class OtpRequestComponent {
   userObject = {
-    email: '',
     otpCode: ''
   };
+  email = localStorage.getItem('email');
 
   constructor(private router: Router, private giocatoreService: GiocatoreService,private loginService: LoginService) {}
 
   verifica() {
-    console.log(this.userObject.email)
     // Verifica se l'email è valida prima di inviare la richiesta
-    if (this.userObject.email) {
-      this.giocatoreService.verifyOtp(this.userObject.email,this.userObject.otpCode).subscribe(
+    if (this.email) {
+      this.giocatoreService.verifyOtp(this.email,this.userObject.otpCode).subscribe(
         response => {
           alert('OTP inserito con successo!');
           this.loginService.authenticate();
-          this.router.navigate(['/home']);
+          this.router.navigate(['/update-pass']);
           console.log(response); // Gestire la risposta
         },
         error => {

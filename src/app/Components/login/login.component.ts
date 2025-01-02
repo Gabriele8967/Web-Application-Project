@@ -37,6 +37,7 @@ userObject: any={
       this.loginService.login(this.userObject.email, this.userObject.password).subscribe(
         (response) => {
           console.log('Login riuscito:', response);
+          localStorage.setItem('email',this.userObject.email)
           this.loginService.authenticate();
           this.router.navigate(['/home']);
         },

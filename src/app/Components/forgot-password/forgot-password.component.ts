@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import {FormsModule} from '@angular/forms';
 import {GiocatoreService} from '../../Services/giocatore.service';
+import {LoginService} from '../../Services/login.service';
 
 @Component({
   selector: 'app-forgot-password',
@@ -17,14 +18,14 @@ export class ForgotPasswordComponent {
     email: ''
   };
 
-  constructor(private router: Router, private giocatoreService: GiocatoreService) {}
+  constructor(private router: Router, private giocatoreService: GiocatoreService, private  loginService: LoginService) {}
 
   onRecupera() {
-    console.log(this.userObject.email)
-    // Verifica se l'email è valida prima di inviare la richiesta
+    localStorage.setItem('email',this.userObject.email)    // Verifica se l'email è valida prima di inviare la richiesta
     if (this.userObject.email) {
       this.giocatoreService.sendOtp(this.userObject.email).subscribe(
         response => {
+          this.loginService.authenticate();
           alert('OTP inviata con successo!');
           this.router.navigate(['/otp'])
           console.log(response); // Gestire la risposta

@@ -33,8 +33,15 @@ export class GiocatoreService {
     return this.http.post(this.url+'/verifyOtp', { email, otp },{ responseType: 'text' });
   }
 
-  resetPassword(email: string, password: string): Observable<any> {
-    return this.http.post(`${this.url}/resetPassword`, { email, password });
+  updatePass(email: string , password: string): Observable<any> {
+    return this.http.post(this.url+'/updatePassword', { email, password },{ responseType: 'text' });
   }
+  updateUsername(email: string , username: string): Observable<any> {
+    return this.http.post(this.url+'/updateUsername', { email, username },{ responseType: 'text' });
+  }
+  updateEmail(oldEmail: string , newEmail: string): Observable<any> {
+    return this.http.post(this.url+'/updateEmail', { oldEmail, newEmail },{ responseType: 'text' });
+  }
+
 
 }
