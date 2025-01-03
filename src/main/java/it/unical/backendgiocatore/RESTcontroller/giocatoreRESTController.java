@@ -243,6 +243,35 @@ public class giocatoreRESTController {
       return ResponseEntity.status(500).body("Errore durante l'aggiornamento dello Username");
     }
   }
+  @PostMapping("/updateNumber")
+  public ResponseEntity<?> updateNumber(@RequestBody List<String> payload) {
+    if (payload == null || payload.size() < 2) {
+      return ResponseEntity.status(400).body("Payload non valido. Deve contenere email e numero.");
+    }
+
+    String email = payload.get(0);
+    String number = payload.get(1);
+
+    System.out.println("Aggiornamento numero di telefono richiesto per: " + email);
+
+    Giocatore giocatoreEsistente = DBManager.getInstance().getGiocatoreDao().findByEmail(email);
+
+    if (giocatoreEsistente == null ) {
+      System.out.println("Registrazione fallita: il giocatore richiesto non esiste.");
+      return ResponseEntity.status(409).body("Giocatore non esistente");
+    }
+
+    boolean aggiornata = DBManager.getInstance().getGiocatoreDao().aggiornaTelefono(email, number);
+
+    if (aggiornata) {
+      System.out.println("Numero di telefono aggiornato per: " + email + " Nuovo numero di telefono: " + number);
+      return ResponseEntity.status(201).body("Numero di telefono aggiornato con successo");
+    } else {
+      System.out.println("Errore durante l'aggiornamento del numero di telefono.");
+      return ResponseEntity.status(500).body("Errore durante l'aggiornamento del numero di telefono");
+    }
+  }
+
 
 
 }

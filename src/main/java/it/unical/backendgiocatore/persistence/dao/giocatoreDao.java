@@ -21,5 +21,5 @@ public interface giocatoreDao {
   boolean aggiornaPassword(String email,String password);
   boolean aggiornaEmail(String oldEmail, String newEmail);
   boolean aggiornaUsername(String email, String username);
-  boolean aggiornaNumero(String email, String telefono);
+  boolean aggiornaTelefono(String email, String telefono);
 }

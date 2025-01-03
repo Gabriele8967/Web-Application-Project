@@ -337,33 +337,30 @@ public class giocatoreDaoDB implements giocatoreDao {
   }
 
   @Override
-  public boolean aggiornaNumero(String email, String telefono) {
+  public boolean aggiornaTelefono(String email, String telefono) {
     String query = "UPDATE giocatore SET telefono = ? WHERE email = ?";
     boolean risultato = false;
-
-
     try (PreparedStatement ps = conn.prepareStatement(query)) {
-      // Codifica la password prima di salvarla nel database
-
 
       // Imposta i parametri nella query
       ps.setString(1, telefono);
       ps.setString(2, email);
 
-
-      // Esegui l'operazione di aggiornamento
       int rowsAffected = ps.executeUpdate();
       if (rowsAffected > 0) {
-        risultato = true; // Aggiornamento riuscito
+        risultato = true;
         System.out.println("Numero di telefono aggiornato con successo per: " + email);
       } else {
         System.err.println("Nessun giocatore trovato con l'email: " + email);
       }
     } catch (SQLException e) {
-      System.err.println("Errore durante l'aggiornamento del numero di telefono: " + e.getMessage());
+      System.err.println("Errore durante l'aggiornamento della email: " + e.getMessage());
     }
 
     return risultato;
+
   }
+
+
 
 }
