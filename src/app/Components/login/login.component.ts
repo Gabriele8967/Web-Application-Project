@@ -14,14 +14,9 @@ import {LoginService} from '../../Services/login.service';
 })
 export class LoginComponent {
 
-  emailTo: string = '';
-  subject: string = '';
-  message: string = '';
-  responseMessage: string = '';
 
   Stato: number = 0; // 0 = Iniziale, 1 = Accesso
 
-  showHead: boolean = false;
 
 userObject: any={
     email: "",

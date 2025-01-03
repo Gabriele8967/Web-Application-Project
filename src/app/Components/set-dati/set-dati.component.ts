@@ -58,6 +58,22 @@ export class SetDatiComponent {
       alert('Per favore, inserisci un\'email valida.');
     }
   }
+
   onSaveNumber(){
+    if (this.userObject.newNumber || this.email) {
+      this.giocatoreService.updateNumber(<string>this.email,this.userObject.newNumber).subscribe(
+        (response: any) => {
+          console.log(this.userObject.newNumber)
+          alert('Numero aggiornato con successo!');
+          console.log(response);
+        },
+        (error: any) => {
+          alert ('Errore durante l\'aggiornamento del numero.');
+          console.error(error);
+        }
+      );
+    } else {
+      alert('Per favore, inserisci un numero valido.');
+    }
   }
 }

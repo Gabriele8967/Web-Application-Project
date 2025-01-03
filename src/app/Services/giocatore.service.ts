@@ -43,5 +43,8 @@ export class GiocatoreService {
     return this.http.post(this.url+'/updateEmail', { oldEmail, newEmail },{ responseType: 'text' });
   }
 
+  updateNumber(email: string, newNumber: string) {
+    return this.http.post(this.url+'/updateNumber', [ email, newNumber ],{ responseType: 'text' });
 
+  }
 }
